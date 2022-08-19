@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_blue_tooth.xml" value="0.1" />
+        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_map_init.xml" value="0.1" />
+        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/gridmap.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28125" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
