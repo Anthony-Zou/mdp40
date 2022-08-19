@@ -66,19 +66,17 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
-//                if(!mBlueAdapter.isEnabled()){
-//                    showToast("Turning On Bluetooth...");
-//                    //intent to on bluetooth
-//                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//                    startActivityForResult(intent, REQUEST_ENABLE_BT);
-//                }
-//                else{
-//                    showToast("Bluetooth is already on");
-//                }
-                if (!mBlueAdapter.isEnabled()) {
-                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                if(!mBlueAdapter.isEnabled()){
+                    showToast("Turning On Bluetooth...");
+                    //intent to on bluetooth
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(intent, REQUEST_ENABLE_BT);
+                    mBluetooth.setImageResource(R.drawable.bluetooth_on);
                 }
+                else{
+                    showToast("Bluetooth is already on");
+                }
+
             }
         });
 
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         // off btn click
         mOffBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mBlueAdapter.isEnabled()){
                     mPariedBluetooth.setText("Paried Devices");
-           
+                    @SuppressLint("MissingPermission")
                     Set<BluetoothDevice> devices = mBlueAdapter.getBondedDevices();
                     for(BluetoothDevice device: devices){
                         mPariedBluetooth.append("\nDevices" + devices.getClass() +" , "+ device);
