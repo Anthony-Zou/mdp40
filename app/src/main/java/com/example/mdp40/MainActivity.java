@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         //get Paired devices
         mPairedBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
                 if(mBlueAdapter.isEnabled()){
@@ -121,12 +122,13 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("MissingPermission")
                     Set<BluetoothDevice> devices = mBlueAdapter.getBondedDevices();
                     for(BluetoothDevice device: devices){
-                        mPariedBluetooth.append("\nDevices" + devices.getClass() +" , "+ device);
+                        mPariedBluetooth.append("\nDevices" + device.getName() +" , "+ device+", "+ device.getAddress());
+                        String deviceHardwareAddress = device.getAddress(); // MAC address
                     }
                 }
                 else{
                     //bluetooth is off so can't get paired devices
-                    showToast("Turn on blurtooth to get paried devices");
+                    showToast("Turn on bluetooth to get paired devices");
                 }
             }
         });
