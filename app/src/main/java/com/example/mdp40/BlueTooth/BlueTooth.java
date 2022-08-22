@@ -13,6 +13,7 @@ package com.example.mdp40.BlueTooth;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.mdp40.MapGeneration.MapInit;
         import com.example.mdp40.R;
 
         import java.util.Set;
@@ -26,6 +27,7 @@ public class BlueTooth extends AppCompatActivity {
     ImageView mBluetooth;
     Button mOnBtn, mOffBtn, mDiscoverBtn, mPairedBtn;
     BluetoothAdapter mBlueAdapter;
+    Button mapGenBtn;
 
 
 
@@ -42,6 +44,7 @@ public class BlueTooth extends AppCompatActivity {
         mOffBtn = findViewById(R.id.offBtn);
         mDiscoverBtn = findViewById(R.id.discoverableBtn);
         mPairedBtn = findViewById(R.id.discoverableBtn);
+        mapGenBtn = findViewById(R.id.mapGen);
 
         //adapter
         mBlueAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -134,6 +137,7 @@ public class BlueTooth extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override

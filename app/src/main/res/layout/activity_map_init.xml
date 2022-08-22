@@ -13,29 +13,32 @@
         android:text="Generate Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
+        app:layout_constraintVertical_bias="0.823" />
 
     <com.example.mdp40.MapGeneration.GridMap
         android:id="@+id/gridMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="551dp"
+        android:layout_height="478dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134"
-        custom:mapColour="#A5A2A2"
-        custom:XColour="#3F51B5"/>
+        app:layout_constraintVertical_bias="0.421"
+        custom:XColour="#3F51B5"
+        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>
 
-    <View
-        android:id="@+id/dragView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@android:color/black"
-        tools:layout_gravity="centre" />
+    <ImageView
+        android:id="@+id/downObs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintWidth_percent="0.05"
+        custom:srcCompat="@drawable/down"
+        tools:layout_editor_absoluteX="708dp"
+        tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>
 
