@@ -21,6 +21,7 @@ package com.example.mdp40.BlueTooth;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.mdp40.MapGeneration.MapInit;
         import com.example.mdp40.R;
 
         import java.util.ArrayList;
@@ -35,9 +36,11 @@ public class BlueTooth extends AppCompatActivity {
     ImageView mBluetooth;
     Button mOnBtn, mOffBtn, mDiscoverBtn, mPairedBtn, mScanBtn;
     BluetoothAdapter mBlueAdapter;
+
     ListView pairedList, scanList;
     ArrayList<String> stringArrayList = new ArrayList<String>();
     ArrayAdapter<String> arrayAdapter;
+
 
 
     @Override
@@ -54,11 +57,13 @@ public class BlueTooth extends AppCompatActivity {
         mOnBtn = findViewById(R.id.onBtn);
         mOffBtn = findViewById(R.id.offBtn);
         mDiscoverBtn = findViewById(R.id.discoverableBtn);
+
         mPairedBtn = findViewById(R.id.pairedBtn);
         mScanBtn = findViewById(R.id.scanBtn);
         ///bindList
         pairedList = (ListView) findViewById(R.id.devistList);
         scanList =(ListView) findViewById(R.id.devistList);
+
         //adapter
         mBlueAdapter = BluetoothAdapter.getDefaultAdapter();
         //intentFilter
@@ -165,6 +170,7 @@ public class BlueTooth extends AppCompatActivity {
             }
         });
 
+
         //scan device button
         mScanBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
@@ -231,6 +237,7 @@ BroadcastReceiver scanModeReceiver = new BroadcastReceiver() {
             else{
                 mScannedBluetooth.setText("Error");
             }
+
     }
 }
     };
