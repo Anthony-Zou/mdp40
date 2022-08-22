@@ -20,15 +20,5 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mapGenBtn;
-    mapGenBtn = findViewById(R.id.mapGen);
-    setContentView(R.layout.activity_main);
 
-
-    mapGenBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(BlueTooth.this, MapInit.class));
-        }
-    });
 }
