@@ -13,6 +13,15 @@ public class GameLogic {
         }
     }
 
+    /*public boolean updateGameBoard(int row, int col){
+        if (gripMap[row-1][col-1] == 1){
+            gripMap[row-1][col-1] =
+        }
+        else{
+            return false;
+        }
+    }*/
+
     public int[][] getGripMap() {
         return gripMap;
     }
