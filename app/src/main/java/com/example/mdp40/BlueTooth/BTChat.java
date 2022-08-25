@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class BTChat extends AppCompatActivity {
-    Button listen, send, listDevices,mOnBtn, mOffBtn;
+    Button listen, send, listDevices,mOnBtn, mOffBtn, upBtn,downBtn,leftBtn,rightBtn;
     ListView listView;
     TextView msg_box, status;
     EditText writeMsg;
@@ -161,6 +161,34 @@ public class BTChat extends AppCompatActivity {
                sendReceive.write(string.getBytes());
            }
        });
+        upBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String string = "up";
+                sendReceive.write(string.getBytes());
+            }
+        });
+        downBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String string = "down";
+                sendReceive.write(string.getBytes());
+            }
+        });
+        leftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String string = "left";
+                sendReceive.write(string.getBytes());
+            }
+        });
+        rightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String string = "right";
+                sendReceive.write(string.getBytes());
+            }
+        });
     }
 
 
@@ -203,6 +231,10 @@ public class BTChat extends AppCompatActivity {
         writeMsg= findViewById(R.id.writemsg);
         mOnBtn = findViewById(R.id.buttonOn);
         mOffBtn = findViewById(R.id.buttonOff);
+        upBtn = findViewById(R.id.buttonUp);
+        downBtn= findViewById(R.id.buttonDown);
+        leftBtn= findViewById(R.id.buttonLeft);
+        rightBtn= findViewById(R.id.buttonRight);
 
     }
 
