@@ -14,9 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mdp40">
-        <activity android:name=".MapGeneration.MapInit"></activity>
+        <activity android:name=".BlueTooth.BlueTooth"/>
+        <activity android:name=".BlueTooth.BTImage"/>
+
+        <activity android:name=".MapGeneration.MapInit" />
         <activity
-            android:name=".BlueTooth.BlueTooth"
+            android:name=".BlueTooth.BTChat"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

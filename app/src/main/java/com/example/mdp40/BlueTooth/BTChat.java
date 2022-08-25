@@ -18,18 +18,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mdp40.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.UUID;
 
 public class BTChat extends AppCompatActivity {
-    Button listen, send, listDevices;
+    Button listen, send, listDevices,mOnBtn, mOffBtn;
     ListView listView;
     TextView msg_box, status;
     EditText writeMsg;
@@ -38,6 +38,9 @@ public class BTChat extends AppCompatActivity {
     BluetoothDevice[] btArray;
 
     SendReceive sendReceive;
+
+    private static final int REQUEST_ENABLE_BT = 0;
+    private static final int REQUEST_DISCOVER_BT = 1;
 
     static final int STATE_LISTENING = 1;
     static final int STATE_CONNECTING = 2;
@@ -58,17 +61,62 @@ public class BTChat extends AppCompatActivity {
 
        findViewByIdes();
        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        if(!bluetoothAdapter.isEnabled()){
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
+        //check if bluetooth is available or not
+        if(bluetoothAdapter == null){
+            status.setText("Bluetooth is not available");
         }
+        else{
+            status.setText("Bluetooth is available");
+            // Set image according to bluetooth status(on/off)
+            if(!bluetoothAdapter.isEnabled()){
+                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
+            }
+        }
+
 
        implementListeners();
     }
 
     @SuppressLint("MissingPermission")
     private void implementListeners() {
+
+        //on btn click
+        mOnBtn.setOnClickListener(new View.OnClickListener() {
+            //@SuppressLint("MissingPermission")
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View view) {
+                if(!bluetoothAdapter.isEnabled()){
+                    showToast("Turning On Bluetooth...");
+                    //intent to on bluetooth
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(intent, REQUEST_ENABLE_BT);
+                    status.setText("Bluetooth On");
+                }
+                else{
+                    showToast("Bluetooth is already on");
+                }
+
+            }
+        });
+
+        // off btn click
+        mOffBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View view) {
+                if(bluetoothAdapter.isEnabled()){
+                    bluetoothAdapter.disable();
+                    showToast("Turning off Bluetooth");
+                    status.setText("Bluetooth Off");
+                }
+                else{
+                    showToast("Bluetooth is already off");
+                }
+            }
+        });
+
        listDevices.setOnClickListener(view ->  {
 
                @SuppressLint("MissingPermission")
@@ -149,10 +197,13 @@ public class BTChat extends AppCompatActivity {
         listen= findViewById(R.id.listen);
         send= findViewById(R.id.send);
         listDevices = findViewById(R.id.listDevices);
-        listView = findViewById(R.id.listView);
+        listView = findViewById(R.id.listView_BTDevices);
         msg_box= findViewById(R.id.msg);
         status= findViewById(R.id.status);
         writeMsg= findViewById(R.id.writemsg);
+        mOnBtn = findViewById(R.id.buttonOn);
+        mOffBtn = findViewById(R.id.buttonOff);
+
     }
 
     private class ServerClass extends Thread{
@@ -268,6 +319,10 @@ public class BTChat extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    //toast message function
+    private void showToast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
 }
