@@ -19,7 +19,9 @@
 
         <activity android:name=".MapGeneration.MapInit" />
         <activity
+
             android:name=".BlueTooth.BTChat"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

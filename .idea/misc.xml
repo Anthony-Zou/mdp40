@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_blue_tooth.xml" value="0.1" />
         <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_map_init.xml" value="0.1" />
         <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/gridmap.xml" value="0.1" />
@@ -16,6 +17,7 @@
         <entry key="app/src/main/res/layout/content_blue_tooth_main.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24954710144927536" />
+
       </map>
     </option>
   </component>

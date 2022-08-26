@@ -10,64 +10,12 @@
     tools:context=".MainActivity"
  >
 
-    <!-- Display whether bluetooth is available or not -->
-    <TextView
-        android:id="@+id/statusBluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#000"/>
-    <!--Bluetooth icon(on/off)-->
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/bluetooth"/>
-    <!-- On button-->
-    <Button
-        android:id="@+id/OnBtn"
-        android:minWidth="200dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Turn On"
-        style="style/Base.Widget.AppCompat.Button.Colored"/>
-    <!-- Off button-->
-    <Button
-        android:id="@+id/offBtn"
-        android:minWidth="200dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Turn Off"
-        style="style/Base.Widget.AppCompat.Button.Colored"/>
-    <!-- Discoverable Button-->
-    <Button
-        android:id="@+id/discoverableBtn"
-        android:minWidth="200dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Discoverable"
-        style="style/Base.Widget.AppCompat.Button.Colored"/>
-    <!-- GetListOfDeviceParied Button-->
-    <Button
-        android:id="@+id/pairedBtn"
-        android:minWidth="200dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Paired Device"
-        style="style/Base.Widget.AppCompat.Button.Colored"/>
-    <!-- Show Paired device Button-->
-    <TextView
-        android:id="@+id/paired"
-        android:minWidth="200dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        />
+
 
     <Button
         android:id="@+id/mapGen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Map Generation" />
+        android:text="Map Generation"
+        android:translationY="300dp" />
 </LinearLayout>
