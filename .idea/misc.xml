@@ -3,17 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/drawable-anydpi/bluetooth_on.xml" value="0.175" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/drawable/obstacle_down.xml" value="0.175" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/drawable/obstacle_down_background.xml" value="0.175" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/drawable/obstacles.xml" value="0.175" />
+
         <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_blue_tooth.xml" value="0.1" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_map_init.xml" value="0.16666666666666666" />
+        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/activity_map_init.xml" value="0.1" />
         <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/layout/gridmap.xml" value="0.1" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/mipmap-anydpi-v26/obstacle_down.xml" value="0.175" />
-        <entry key="..\:/I LOVE CS/year4sem1/mdp/Group40/app/src/main/res/mipmap-anydpi-v26/obstacle_down_round.xml" value="0.175" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/activity_blue_tooth.xml" value="0.32701263427734384" />
+        <entry key="app/src/main/res/layout/activity_blue_tooth_main.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/activity_bluetooth_main.xml" value="0.21645202636718747" />
+        <entry key="app/src/main/res/layout/activity_btchat.xml" value="0.2757431030273438" />
+        <entry key="app/src/main/res/layout/activity_btimage.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bluetooh_connect_frag_fragment.xml" value="0.12604166666666666" />
+        <entry key="app/src/main/res/layout/content_blue_tooth_main.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24954710144927536" />
+
       </map>
     </option>
   </component>

@@ -20,10 +20,7 @@ package com.example.mdp40.BlueTooth;
         import android.widget.ListView;
         import android.widget.TextView;
         import android.widget.Toast;
-
-        import com.example.mdp40.MapGeneration.MapInit;
         import com.example.mdp40.R;
-
         import java.util.ArrayList;
         import java.util.Set;
 
@@ -54,7 +51,7 @@ public class BlueTooth extends AppCompatActivity {
         threadText= findViewById(R.id.ThreadText);
         //bindButtons
         mBluetooth = findViewById(R.id.bluetooth);
-        mOnBtn = findViewById(R.id.onBtn);
+        mOnBtn = findViewById(R.id.OnBtn);
         mOffBtn = findViewById(R.id.offBtn);
         mDiscoverBtn = findViewById(R.id.discoverableBtn);
 
