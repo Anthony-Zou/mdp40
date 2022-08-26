@@ -14,11 +14,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mdp40.BlueTooth.BlueTooth;
+import com.example.mdp40.MapGeneration.GameLogic;
 import com.example.mdp40.MapGeneration.MapInit;
 
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-}
+        Button genMapBtn = findViewById(R.id.mapGen);
+        genMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MapInit.class));
+            }
+        });
+    }
+    }
