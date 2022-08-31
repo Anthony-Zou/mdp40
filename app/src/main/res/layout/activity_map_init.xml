@@ -8,15 +8,16 @@
 
     <Button
         android:id="@+id/genMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generate Map"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Generate Obstacles"
+        android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.682"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.823" />
+        app:layout_constraintVertical_bias="0.651" />
 
     <com.example.mdp40.MapGeneration.GridMap
         android:id="@+id/gridMap"
@@ -40,5 +41,92 @@
         custom:srcCompat="@drawable/down"
         tools:layout_editor_absoluteX="708dp"
         tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/genRobot"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Generate Robot"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+    <Button
+        android:id="@+id/moveObs"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Move Obstacles"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.691" />
+
+    <Button
+        android:id="@+id/moveRobot"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Move Robot"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.789" />
+
+    <ImageView
+        android:id="@+id/forwardView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridMap"
+        app:layout_constraintVertical_bias="0.137"
+        custom:srcCompat="@drawable/forward" />
+
+    <ImageView
+        android:id="@+id/backwardView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.181"
+        custom:srcCompat="@drawable/backward" />
+
+    <ImageView
+        android:id="@+id/turnLView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/forwardView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.139"
+        custom:srcCompat="@drawable/turnleft" />
+
+    <ImageView
+        android:id="@+id/turnRView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/forwardView"
+        app:layout_constraintTop_toTopOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.139"
+        custom:srcCompat="@drawable/turnright" />
 </android.support.constraint.ConstraintLayout>
 

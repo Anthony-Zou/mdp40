@@ -1,5 +1,6 @@
 package com.example.mdp40.MapGeneration;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,15 @@ public class MapInit extends AppCompatActivity {
         setContentView(R.layout.activity_map_init);
 
         Button genMapbtn = (Button)findViewById(R.id.genMap);
+        Button genRobotBtn = (Button)findViewById(R.id.genRobot);
+        Button moveObsBtn = (Button)findViewById(R.id.moveObs);
+
+        Button moveRobBtn = (Button)findViewById(R.id.moveRobot);
+        ImageView forwardView = (ImageView)findViewById(R.id.forwardView);
+        ImageView backwardView = (ImageView)findViewById(R.id.backwardView);
+        ImageView turnLView = (ImageView)findViewById(R.id.turnLView);
+        ImageView turnRView = (ImageView)findViewById(R.id.turnRView);
+
         GridMap gridMap = (GridMap)findViewById(R.id.gridMap);
 
         View downObs = (View)findViewById(R.id.downObs);
@@ -28,12 +38,73 @@ public class MapInit extends AppCompatActivity {
             }
         });
 
+        //Click to generate obstacles
         genMapbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MapInit.this, "Obstacles generated",
                         Toast.LENGTH_LONG).show();
-                gridMap.resetMap();
+                gridMap.genObstacles();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to generate robot
+        genRobotBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MapInit.this, "Robot generated",
+                        Toast.LENGTH_LONG).show();
+                gridMap.genRobot();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to move obstacles
+        moveObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MapInit.this, "Moving obstacles...",
+                        Toast.LENGTH_LONG).show();
+                gridMap.genObstacles();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to move robot
+        moveRobBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MapInit.this, "Moving obstacles...",
+                        Toast.LENGTH_LONG).show();
+                gridMap.genRobot();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to move robot forward
+        forwardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.moveForward();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to move robot backward
+        backwardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.moveBackward();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to rotate robot left
+        turnLView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.rotateLeft();
                 gridMap.invalidate();
             }
         });
