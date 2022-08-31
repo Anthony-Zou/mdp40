@@ -1,20 +1,18 @@
 package com.example.mdp40.MapGeneration;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.graphics.Matrix;
-import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
 
 import com.example.mdp40.R;
 
