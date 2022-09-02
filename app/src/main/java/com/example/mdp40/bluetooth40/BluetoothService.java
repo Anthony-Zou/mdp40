@@ -6,7 +6,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.example.mdp40.Constants;
@@ -20,21 +22,20 @@ import java.util.UUID;
 public class BluetoothService {
     private static final String TAG = "BluetoothService";
     private static final String APP_NAME = "bluetooth40";
-    private static final UUID UUID = java.util.UUID.fromString("62a607c8-6ddd-450b-ba91-1af21b5e3954");
+    private static final UUID UUID = java.util.UUID.fromString("00001101-0000-1000-8000-0085F9B34FB");
     private ConnectThread connectThread = null;
     private ConnectedThread connectedThread = null;
-    private AcceptedThread acceptedThread = null;
+    private AcceptThread acceptThread = null;
     private final Handler handler;
     private BluetoothAdapter bluetoothAdapter;
     public int state;
     private BluetoothListener btListener;
 
-    // Constants that indicate the current connection state
-    public static final int STATE_NONE = 0;       // we're doing nothing
-    public static final int STATE_LISTEN = 1;     // now listening for incoming connections
-    public static final int STATE_CONNECTING = 2; // now initiating an outgoing connection
-    public static final int STATE_CONNECTED = 3;  // now connected to a remote device
 
+    public static final int STATE_NONE = 0;
+    public static final int STATE_LISTEN = 1;
+    public static final int STATE_CONNECTING = 2;
+    public static final int STATE_CONNECTED = 3;
 
     public BluetoothService(Handler handler) {
         this.handler = handler;
@@ -47,22 +48,125 @@ public class BluetoothService {
     }
 
     public synchronized void start(){
+        if(connectThread != null){
+            connectThread.cancel();
+            connectThread = null;
+        }
+        if(connectedThread != null){
+            connectedThread.cancel();
+            connectedThread = null;
+        }
+        if(acceptThread == null){
+            acceptThread = new AcceptThread();
+            acceptThread.start();
+        }
+        if(state == STATE_CONNECTED){
+            stop();
+        }
+    }
+
+    public synchronized void connect(BluetoothDevice device){
+
+
+        if(state == STATE_CONNECTING){
+            if(connectThread != null){
+                connectThread.cancel();
+                connectThread = null;
+            }
+        }
+        if(connectThread != null){
+            connectThread.cancel();
+            connectThread = null;
+        }
+        if(connectedThread != null){
+            connectedThread.cancel();
+            connectedThread = null;
+        }
+
+        connectThread = new ConnectThread(device);
+        connectThread.start();
+        state = STATE_CONNECTING;
+
+        updateBTConnected(STATE_CONNECTING);
 
     }
 
-    public synchronized void connect(BluetoothDevice device){}
+    public synchronized void connected(BluetoothSocket bluetoothSocket, BluetoothDevice bluetoothDevice){
+        if(connectedThread != null){
+            connectedThread.cancel();
+            connectedThread = null;
+        }
+        if(acceptThread != null){
+            acceptThread.cancel();
+            acceptThread = null;
+        }
 
-    public synchronized void connected(BluetoothSocket bluetoothSocket, BluetoothDevice bluetoothDevice){}
+        connectedThread = new ConnectedThread(bluetoothSocket);
+        connectedThread.start();
 
-    public synchronized void stop(){}
+        Message message = handler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.DEVICE_NAME, bluetoothDevice.getName());
+        message.setData(bundle);
+        handler.sendMessage(message);
+        state = STATE_CONNECTED;
+        updateBTConnected(STATE_CONNECTED);
 
-    private void connectionFailed(){}
 
-    private void connectionLost(){}
+    }
 
-    private void updateBTConnected(){}
+    public synchronized void stop(){
+        if(connectThread != null){
+            connectThread.cancel();
+            connectThread = null;
+        }
+        if(connectedThread != null){
+            connectedThread.cancel();
+            connectedThread= null;
+        }
+        if(acceptThread != null){
+            acceptThread.cancel();
+            acceptThread = null;
+        }
 
-    public void write(byte[] out){}
+        state = STATE_NONE;
+
+        updateBTConnected(STATE_NONE);
+    }
+
+    private void connectionFailed(){
+        Message message = handler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.TOAST,"Failed to connect device");
+        message.setData(bundle);
+        handler.sendMessage(message);
+        state = STATE_NONE;
+        updateBTConnected(STATE_NONE);
+    }
+
+    private void connectionLost(){
+        Message message = handler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.TOAST, "Lost BT Connection");
+        message.setData(bundle);
+        state = STATE_NONE;
+        updateBTConnected(STATE_NONE);
+    }
+
+    private void updateBTConnected(int status){
+        btListener.onBluetoothStatusChange(status);
+    }
+
+    public void write(byte[] out){
+        ConnectedThread r;
+        synchronized (this){
+            if(state != STATE_CONNECTED){
+                return;
+            }
+            r = connectedThread;
+        }
+        r.write(out);
+    }
 
 
 
@@ -72,6 +176,7 @@ public class BluetoothService {
         private final BluetoothDevice bluetoothDevice;
 
         public ConnectThread(BluetoothDevice bluetoothDevice){
+
             this.bluetoothDevice = bluetoothDevice;
             BluetoothSocket tmpBluetoothSocket = null;
             try{
@@ -134,11 +239,13 @@ public class BluetoothService {
                 _is = socket.getInputStream();
             } catch (IOException e) {
                Log.e(TAG, "Failed to create input stream");
+
             }
             try {
                 _os = socket.getOutputStream();
             } catch (IOException e) {
                 Log.e(TAG, "Failed to create output stream");
+
             }
             this.is = _is;
             this.os = _os;
@@ -176,10 +283,10 @@ public class BluetoothService {
         }
     }
 
-    private class AcceptedThread extends Thread
+    private class AcceptThread extends Thread
     {
     private final BluetoothServerSocket bluetoothServerSocket;
-    public AcceptedThread(){
+    public AcceptThread(){
         BluetoothServerSocket tmpBluetoothServerSocket = null;
         try{
             tmpBluetoothServerSocket = bluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord(APP_NAME,UUID);
