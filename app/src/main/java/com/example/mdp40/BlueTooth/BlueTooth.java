@@ -1,28 +1,31 @@
 package com.example.mdp40.BlueTooth;
 
-        import android.annotation.SuppressLint;
-        import android.bluetooth.BluetoothAdapter;
-        import android.bluetooth.BluetoothDevice;
-        import android.content.BroadcastReceiver;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.content.IntentFilter;
-        import android.os.Handler;
-        import android.os.Message;
-        import android.support.annotation.NonNull;
-        import android.support.annotation.Nullable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.ImageView;
-        import android.widget.ListView;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import com.example.mdp40.R;
-        import java.util.ArrayList;
-        import java.util.Set;
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mdp40.R;
+
+import java.util.ArrayList;
+import java.util.Set;
 
 public class BlueTooth extends AppCompatActivity {
 
