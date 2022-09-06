@@ -4,41 +4,41 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-        <string name="robo_status">Robot Status</string>
-        <string name="robo_direction">Robot Direction</string>
-        <string name="robo_position">Robot Position</string>
+    <string name="robo_status">Robot Status</string>
+    <string name="robo_direction">Robot Direction</string>
+    <string name="robo_position">Robot Position</string>
 
-        <string name="img_recog_description">Image recognised will be displayed here</string>
-        <string name="img_recog_subtitle">Image recognised</string>
-        <string name="btn_accel_description">Accelerates robot</string>
-        <string name="btn_reverse_description">Reverses robot</string>
+    <string name="img_recog_description">Image recognised will be displayed here</string>
+    <string name="img_recog_subtitle">Image recognised</string>
+    <string name="btn_accel_description">Accelerates robot</string>
+    <string name="btn_reverse_description">Reverses robot</string>
 
-        <string name="console">Debug messages will be printed here</string>
+    <string name="console">Debug messages will be printed here</string>
 
-        <string name="img_robot_description">Robot image will be displayed here</string>
+    <string name="img_robot_description">Robot image will be displayed here</string>
 
-        <string name="image_recog">Image Recognition</string>
-        <string name="fastest_path">Fastest Path</string>
-        <string name="connect">Not Connected</string>
-        <string name="reset">Reset</string>
-        <string name="temp">Temp</string>
+    <string name="image_recog">Image Recognition</string>
+    <string name="fastest_path">Fastest Path</string>
+    <string name="connect">Not Connected</string>
+    <string name="reset">Reset</string>
+    <string name="temp">Temp</string>
 
-        <string name="title_spawn">Select Spawn</string>
-        <string name="btn_robot">Robot</string>
-        <string name="btn_obstacle">Obstacle</string>
-        <string name="switch_tilt_control">Tilt Controls</string>
+    <string name="title_spawn">Select Spawn</string>
+    <string name="btn_robot">Robot</string>
+    <string name="btn_obstacle">Obstacle</string>
+    <string name="switch_tilt_control">Tilt Controls</string>
 
-        <string name="btn_left_description">Steers left</string>
-        <string name="btn_right_description">Steers right</string>
-        <string name="title_activity_bluetooth_devices">BluetoothDevices</string>
-        <!-- Strings used for fragments for navigation -->
-        <string name="first_fragment_label">First Fragment</string>
-        <string name="second_fragment_label">Second Fragment</string>
-        <string name="next">Next</string>
-        <string name="previous">Previous</string>
+    <string name="btn_left_description">Steers left</string>
+    <string name="btn_right_description">Steers right</string>
+    <string name="title_activity_bluetooth_devices">BluetoothDevices</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
-        <string name="hello_first_fragment">Hello first fragment</string>
-        <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-        <string name="toggle_video">Toggle Video</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="toggle_video">Toggle Video</string>
 
 </resources>

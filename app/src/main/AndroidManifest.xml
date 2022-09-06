@@ -24,6 +24,7 @@
 
         <activity android:name=".BlueTooth.BlueTooth" />
         <activity android:name=".BlueTooth.BTImage" />
+        <activity android:name=".MapGeneration.MapInit" />
 
         <activity
             android:name=".bluetooth40.BluetoothDeviceActivity"
