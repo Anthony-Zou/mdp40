@@ -8,29 +8,26 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mdp40.R;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.UUID;
@@ -40,7 +37,7 @@ public class BTImage extends AppCompatActivity {
     ListView listView;
     TextView  status;
     ImageView imageView;
-    EditText writeMsg;
+
 
     BluetoothAdapter bluetoothAdapter ;
     BluetoothDevice[] btArray;
@@ -117,8 +114,6 @@ public class BTImage extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String string = String.valueOf(writeMsg.getText());
-//                sendReceive.write(string.getBytes());
 
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.happy);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -172,7 +167,7 @@ public class BTImage extends AppCompatActivity {
         listen= findViewById(R.id.listen);
         send= findViewById(R.id.send);
         listDevices = findViewById(R.id.listDevices);
-        listView = findViewById(R.id.listView);
+        listView = findViewById(R.id.listView_BTDevices);
         imageView= findViewById(R.id.imageView);
         status= findViewById(R.id.status);
 
@@ -304,6 +299,8 @@ public class BTImage extends AppCompatActivity {
                     }
                 }
             }
+
+
         }
 
         public void write(byte[] bytes){
