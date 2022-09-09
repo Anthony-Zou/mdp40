@@ -124,16 +124,6 @@ public class MapInit extends AppCompatActivity {
 
         GridMap gridMap = (GridMap)findViewById(R.id.gridMap);
 
-        View downObs = (View)findViewById(R.id.downObs);
-        downObs.setOnLongClickListener(new View.OnLongClickListener(){
-            @Override
-            public boolean onLongClick(View v){
-                Toast.makeText(MapInit.this, "I have been long clicked",
-                        Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
-
         //Click to generate obstacles
         genMapbtn.setOnClickListener(new View.OnClickListener() {
             @Override
