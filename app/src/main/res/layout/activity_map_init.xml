@@ -7,220 +7,220 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/genMap"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Generate Obstacles"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+<!--    <Button-->
+<!--        android:id="@+id/genMap"-->
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Generate Obstacles"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.241" />-->
 
-    <Button
-        android:id="@+id/changeId"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Change id"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+<!--    <Button-->
+<!--        android:id="@+id/changeId"-->
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Change id"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517" />
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.517" />-->
 
-    <Button
-        android:id="@+id/addObs"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Add obstacles"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
-
-
-    <Button
-        android:id="@+id/clearCanvas"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Clear canvas"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
-
-    <Button
-        android:id="@+id/genRobot"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Generate Robot"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.604" />
-
-    <Button
-        android:id="@+id/moveObs"
-
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Move Obstacles"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
-
-    <com.example.mdp40.MapGeneration.GridMap
-        android:id="@+id/gridMap"
-        android:layout_width="551dp"
-        android:layout_height="478dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421"
-        custom:XColour="#3F51B5"
-        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>
+<!--    <Button-->
+<!--        android:id="@+id/addObs"-->
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Add obstacles"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.427" />-->
 
 
-    <ImageView
-        android:id="@+id/turnLView"
-        android:layout_width="26dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+<!--    <Button-->
+<!--        android:id="@+id/clearCanvas"-->
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Clear canvas"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.389"
-        custom:srcCompat="@drawable/turnleft" />
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.691" />-->
 
-    <ImageView
-        android:id="@+id/forwardView"
-        android:layout_width="26dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+<!--    <Button-->
+<!--        android:id="@+id/genRobot"-->
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Generate Robot"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.817"
-        custom:srcCompat="@drawable/forward"/>
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.604" />-->
 
-    <ImageView
-        android:id="@+id/turnRView"
-        android:layout_width="26dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+<!--    <Button-->
+<!--        android:id="@+id/moveObs"-->
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.006"
-        app:layout_constraintStart_toEndOf="@+id/forwardView"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.389"
-        custom:srcCompat="@drawable/turnright" />
+<!--        android:layout_width="87dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:text="Move Obstacles"-->
+<!--        android:textSize="5sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.755"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.334" />-->
 
-    <ImageView
-        android:id="@+id/backwardView"
+<!--    <com.example.mdp40.MapGeneration.GridMap-->
+<!--        android:id="@+id/gridMap"-->
+<!--        android:layout_width="551dp"-->
+<!--        android:layout_height="478dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.528"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.421"-->
+<!--        custom:XColour="#3F51B5"-->
+<!--        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>-->
 
-        android:layout_width="26dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.729"
-        custom:srcCompat="@drawable/backward" />
+<!--    <ImageView-->
+<!--        android:id="@+id/turnLView"-->
+<!--        android:layout_width="26dp"-->
+<!--        android:layout_height="22dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+
+<!--        app:layout_constraintEnd_toStartOf="@+id/forwardView"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/forwardView"-->
+<!--        app:layout_constraintVertical_bias="0.389"-->
+<!--        custom:srcCompat="@drawable/turnleft" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/forwardView"-->
+<!--        android:layout_width="26dp"-->
+<!--        android:layout_height="22dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+
+<!--        app:layout_constraintHorizontal_bias="0.724"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.817"-->
+<!--        custom:srcCompat="@drawable/forward"/>-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/turnRView"-->
+<!--        android:layout_width="26dp"-->
+<!--        android:layout_height="22dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.006"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/forwardView"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/forwardView"-->
+<!--        app:layout_constraintVertical_bias="0.389"-->
+<!--        custom:srcCompat="@drawable/turnright" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/backwardView"-->
+
+<!--        android:layout_width="26dp"-->
+<!--        android:layout_height="22dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+
+<!--        app:layout_constraintHorizontal_bias="0.724"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/forwardView"-->
+<!--        app:layout_constraintVertical_bias="0.729"-->
+<!--        custom:srcCompat="@drawable/backward" />-->
 
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+<!--    <NumberPicker-->
+<!--        android:id="@+id/numberPicker"-->
+<!--        android:layout_width="44dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintHorizontal_bias="0.61"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+<!--        app:layout_constraintHorizontal_bias="0.61"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.891" />-->
 
-    <TextView
-        android:id="@+id/robotRightImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="@+id/robotY"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+<!--    <TextView-->
+<!--        android:id="@+id/robotRightImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="TextView"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.061"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/robotY"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.946" />-->
 
-    <TextView
-        android:id="@+id/robotLeftImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+<!--    <TextView-->
+<!--        android:id="@+id/robotLeftImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="TextView"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toEndOf="@+id/robotX"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878" />
+<!--        app:layout_constraintHorizontal_bias="0.03"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/robotX"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.878" />-->
 
-    <TextView
-        android:id="@+id/robotY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Y:"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+<!--    <TextView-->
+<!--        android:id="@+id/robotY"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Y:"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+<!--        app:layout_constraintHorizontal_bias="0.421"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.947" />-->
 
-    <TextView
-        android:id="@+id/robotX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X:"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+<!--    <TextView-->
+<!--        android:id="@+id/robotX"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="X:"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.421"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.879" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
