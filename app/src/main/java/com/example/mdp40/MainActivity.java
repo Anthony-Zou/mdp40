@@ -1,5 +1,6 @@
 package com.example.mdp40;
 import static com.example.mdp40.bluetooth40.BluetoothService.STATE_CONNECTED;
+
 import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -7,10 +8,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -37,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements BluetoothListener, SensorEventListener {
+public class MainActivity extends AppCompatActivity implements BluetoothListener{
     private ActivityResultLauncher<Intent> activityResultLauncher;
     BluetoothAdapter bluetoothAdapter;
     BluetoothService bluetoothService;
@@ -45,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
     String deviceMACAddr = "";
     consoleFragment fragmentConsole;
     rightPanelFragment rightPanelFragment;
-    SensorManager sensorManager;
-    Sensor accel;
 
 
     @Override
@@ -64,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         rightPanelFragment = (rightPanelFragment) fragmentManager.findFragmentById(R.id.fragmentRightPanel);
         LinearLayout layout = findViewById(R.id.main_layout);
         }
+
     private void initBluetooth() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         bluetoothService = new BluetoothService(btMsgHandler);
@@ -153,6 +149,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                 .show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bluetoothService.stop();
+    }
 
     // adopted from BluetoothListener interface, used in BluetoothService class
     public void onBluetoothStatusChange(int status) {
@@ -182,20 +183,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
      startActivity(new Intent(MainActivity.this, MapInit.class));
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        bluetoothService.stop();
-    }
-    @Override
-    public void onSensorChanged(SensorEvent e) {
 
-    }
-
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-    }
 
     public void Toast(String msg){
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
