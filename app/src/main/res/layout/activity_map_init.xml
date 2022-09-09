@@ -41,7 +41,9 @@
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
+
+        app:layout_constraintVertical_bias="0.841" />
+
 
     <Button
         android:id="@+id/moveObs"
@@ -70,7 +72,22 @@
         app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/genMap"
+
+        android:id="@+id/changeId"
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Change id"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.768" />
+
+    <Button
+        android:id="@+id/clearCanvas"
+
         android:layout_width="87dp"
         android:layout_height="28dp"
         android:text="Generate Obstacles"
@@ -93,7 +110,9 @@
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+
+        app:layout_constraintVertical_bias="0.892" />
+
 
     <ImageView
         android:id="@+id/forwardView"
