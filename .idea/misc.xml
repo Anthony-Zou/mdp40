@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/activity_btchat.xml" value="0.2757431030273438" />
         <entry key="app/src/main/res/layout/activity_btimage.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_map_init.xml" value="0.1278324070115434" />
+        <entry key="app/src/main/res/layout/activity_map_init.xml" value="0.45" />
         <entry key="app/src/main/res/layout/activity_mdp40_bluetooth.xml" value="0.1278324070115434" />
         <entry key="app/src/main/res/layout/bluetooh_connect_frag_fragment.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/content_blue_tooth_main.xml" value="0.24954710144927536" />
@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_panel_right.xml" value="0.10256410256410256" />
         <entry key="app/src/main/res/layout/fragment_right.xml" value="0.2368659420289855" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/gridmap.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/item_bluetooth_device.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/item_message.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_scan_bluetooth_device.xml" value="0.19384057971014493" />

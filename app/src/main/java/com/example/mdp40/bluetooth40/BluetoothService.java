@@ -22,7 +22,9 @@ import java.util.UUID;
 public class BluetoothService {
     private static final String TAG = "BluetoothService";
     private static final String APP_NAME = "bluetooth40";
-    private static final UUID UUID = java.util.UUID.fromString("00001101-0000-1000-8000-0085F9B34FB");
+    //private static final UUID UUID = UUID.fromString("00001101-0000-1000-8000-0085F9B34FB");
+    private static final UUID UUID = java.util.UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
     private ConnectThread connectThread = null;
     private ConnectedThread connectedThread = null;
     private AcceptThread acceptThread = null;
