@@ -11,16 +11,19 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.example.mdp40.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GridMap extends View{
 
@@ -44,12 +47,13 @@ public class GridMap extends View{
     int no_of_obs = 4;
     private static int robottopImage = 17, robotleftImage = 0;
     //array contains obsticles' info: {left},{top},{angle}
-    int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{0,0,0,0}};
-    boolean[] toMoveObs = {false,false,false,false};
+    int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{0,0,0,0},{11,12,13,14},{10,10,10,10}};
+    boolean[] isSelectedObs = {false,false,false,false};
     private int size = 10;
     private int enlargeSize = 18;
     private String[][] obsIdentity;
     private int newId;
+    private boolean isOverlap = false;
 
     private int robotAngle = 0;
     private static int faceDirection = 0;
@@ -108,25 +112,25 @@ public class GridMap extends View{
             }
             System.out.println();
 
-            for (int i = 0; i < obsIdentity[0].length; i++) {
-                for (int j = 0; j < obsLocation[0].length; j++) {
-                    addNumber(canvas, obsIdentity[1][j],
-                            (float) (obsLocation[0][j] + 0.4) * cellSize,
-                            (float) (obsLocation[1][j] + 0.6) * cellSize, size);
-                }
-                break;
+            //add numbers to obstacles
+            //System.out.println("gridmap new id update:" + newId);
+            //System.out.println("todraw obslocation:"+ Arrays.toString(obsLocation[3]));
+            for (int i = 0; i < no_of_obs; i++) {
+                //System.out.println("obsLoc changed to: "+ (obsLocation[3][i]));
+                addNumber(canvas, obsIdentity[1][obsLocation[3][i]-11],
+                        (float) (obsLocation[0][i] + 0.4) * cellSize,
+                        (float) (obsLocation[1][i] + 0.6) * cellSize, obsLocation[4][i]);
             }
-
         }
         else {
             clearAll();
         }
-        System.out.println("gridmap new id update:" + newId);
     }
 
     public void clearAll() {
-        obsLocation = new int[][]{{8, 15, 1, 13}, {7, 15, 12, 5}, {0, 0, 0, 0}};
-        toMoveObs = new boolean[]{false, false, false, false};
+        obsLocation = new int[][]{{8, 15, 1, 13}, {7, 15, 12, 5}, {0, 0, 0, 0},
+                                  {11, 12, 13, 14},{10, 10, 10, 10}};
+        isSelectedObs = new boolean[]{false, false, false, false};
         robotleftImage = 0;
         robottopImage = 17;
         no_of_obs = 4;
@@ -139,7 +143,7 @@ public class GridMap extends View{
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 // finger touches the screen
-                if (game.getGripMap()[0][0] == 8) {
+                if (game.getGripMap()[0][0] == 8 ||game.getGripMap()[0][0] == 9) {
                     //System.out.println("touch action down: ");
                     refY = y;
                     refX = x;
@@ -148,10 +152,10 @@ public class GridMap extends View{
                     //System.out.println("origX: " + origX);
                     //System.out.println("origY: " + origY);
 
-                    for (int i = 0; i < toMoveObs.length; i++) {
+                    for (int i = 0; i < isSelectedObs.length; i++) {
                         //System.out.println("i="+ i );
                         if(toDrag(refX, refY, obsLocation[0][i], obsLocation[1][i],bitmapArray.get(i))){
-                            toMoveObs[i]=true;
+                            isSelectedObs[i]=true;
                         }
                     }
                 }
@@ -161,18 +165,21 @@ public class GridMap extends View{
                 // finger moves on the screen
                 if (game.getGripMap()[0][0] == 8) {
                     //System.out.println("touch action move: ");
-                    for (int i=0; i<toMoveObs.length;i++){
-                        if(toMoveObs[i] == true){
+                    for (int i = 0; i< isSelectedObs.length; i++){
+                        if(isSelectedObs[i] == true){
                             float nX = event.getX();
                             float nY = event.getY();
                             obsLocation[0][i]= (int) Math.floor(nX / cellSize);
                             obsLocation[1][i] = (int) Math.floor(nY / cellSize);
-                            //System.out.println("nX Move: " + nX);
-                            //System.out.println("nY Move: " + nY);
-                            //System.out.println("refX Move: " + refX);
-                            //System.out.println("refY Move: " + refY);
+                            System.out.println("nX Move: " + nX);
+                            System.out.println("nY Move: " + nY);
+                            System.out.println("origX Move: " + origX);
+                            System.out.println("origY Move: " + origY);
+
+                            //System.out.println("not overlap");
                             refX = nX;
                             refY = nY;
+
                             invalidate();
                         }
                     }
@@ -182,23 +189,68 @@ public class GridMap extends View{
             case MotionEvent.ACTION_UP:
                 // finger lifts up from the screen
                 if (game.getGripMap()[0][0] == 8) {
-                    for (int i=0; i<toMoveObs.length;i++){
-                        if(toMoveObs[i]==true){
+                    for (int i = 0; i< isSelectedObs.length; i++){
+                        if(isSelectedObs[i]==true){
                             float nX = event.getX();
                             float nY = event.getY();
-                            obsLocation[0][i] = (int) Math.floor(nX / cellSize);
-                            obsLocation[1][i] = (int) Math.floor(nY / cellSize);
+                            int newLeft = (int) Math.floor(nX / cellSize);
+                            int newTop = (int) Math.floor(nY / cellSize);
+
+                            System.out.println("newLeft Up: " + newLeft);
+                            System.out.println("newTop Up: " + newTop);
+                            /*obsLocation[0][i] = (int) Math.floor(nX / cellSize);
+                            obsLocation[1][i] = (int) Math.floor(nY / cellSize);*/
                             if (abs(nX - origX) < cellSize && abs(nY - origY) < cellSize) {
                                 obsLocation[2][i] += 90;
                             }
-                            refX = nX;
-                            refY = nY;
-                            toMoveObs[i]=false;
+                            System.out.println("nX Up: " + nX);
+                            System.out.println("nY Up: " + nY);
+                            System.out.println("origX Up: " + origX);
+                            System.out.println("origY Up: " + origY);
+                            boolean changeable = true;
+                            for (int j = 0; j < obsLocation[0].length; j++){
+                                if (i != j && newLeft == obsLocation[0][j] && newTop == obsLocation[1][j]){
+                                    System.out.println("overlap");
+                                    changeable = false;
+                                    obsLocation[0][i] = (int) Math.floor(origX / cellSize);
+                                    obsLocation[1][i] = (int) Math.floor(origY / cellSize);
+                                }
+                            }
+                            if (changeable){
+                                System.out.println("changeable");
+                                refX = nX;
+                                refY = nY;
+                                obsLocation[0][i] = (int) Math.floor(nX / cellSize);
+                                obsLocation[1][i] = (int) Math.floor(nY / cellSize);
+                            }
+
+                            isSelectedObs[i]=false;
 
                             //remove obstacles if out of boundary
 
                             invalidate();
                         }
+                    }
+                }
+                else if (game.getGripMap()[0][0] == 9) {
+                    for (int i=0; i<no_of_obs;i++){
+                        if(isSelectedObs[i]==true) {
+                            //System.out.println("gridmap isSelectedObs");
+                            float nX = event.getX();
+                            float nY = event.getY();
+                            obsLocation[0][i] = (int) Math.floor(nX / cellSize);
+                            obsLocation[1][i] = (int) Math.floor(nY / cellSize);
+                            if (abs(nX - origX) < cellSize && abs(nY - origY) < cellSize) {
+                                MapInit mapInit = new MapInit();
+                                mapInit.retrieveCurrentObs(i);
+                                //System.out.println("gridmap i to be pass= "+i);
+                                //change grid map matrix to 10
+                            }
+
+                            //remove obstacles if out of boundary
+                        }
+                        isSelectedObs[i]=false;
+                        invalidate();
                     }
                 }
                 break;
@@ -240,21 +292,40 @@ public class GridMap extends View{
 
             //add more obstacles
             if (game.getGripMap()[0][0] == 7) {
-                addMoreObs();
+                if (no_of_obs < 8) {
+                    addMoreObs();
 
-                //Check obsLocation array
+//                Check obsLocation array
 //                for (int i = 0; i < obsLocation.length; i++) {
 //                    for (int j = 0; j < obsLocation[i].length; j++) {
 //                        System.out.print(obsLocation[i][j] + " ");
 //                    }
 //                }
 //                System.out.println();
+                }
             }
 
             //generate obstacles
             for (int i = 0; i < no_of_obs; i++) {
                 if (obsLocation[0][i] >= 0 && obsLocation[0][i] < 20 && obsLocation[1][i] >= 0 && obsLocation[1][i] < 20) {
                     rotateBitmap(canvas, bitmapArray.get(i), obsLocation[0][i], obsLocation[1][i], obsLocation[2][i]);
+                }
+                else{
+                    bitmapArray.remove(i);
+                    obsLocation = obstacle.removeObs(no_of_obs, obsLocation, i);
+                    isSelectedObs = obstacle.removeMoveObs(no_of_obs, isSelectedObs, i);
+                    no_of_obs--;
+                    i--;
+                    //Check obsLocation array
+                    System.out.println("check obsLocation after remove: ");
+                    for (int j = 0; j < obsLocation.length; j++) {
+                        for (int k = 0; k < obsLocation[j].length; k++) {
+                            System.out.print(obsLocation[j][k] + " ");
+                        }
+                    }
+                    System.out.println();
+                    System.out.println("isSelected obslocation:"+ Arrays.toString(isSelectedObs));
+                    System.out.println("i: "+ i);
                 }
             }
 
@@ -268,12 +339,12 @@ public class GridMap extends View{
         }
     }
 
-    public void addNumber(Canvas canvas, String string, float leftCoord, float topCoord, int size) {
+    public void addNumber(Canvas canvas, String number, float leftCoord, float topCoord, int size) {
         obstacle.getObsIdentity();
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.WHITE);
         paint.setTextSize(size);
-        canvas.drawText(string, leftCoord, topCoord, paint);
+        canvas.drawText(number, leftCoord, topCoord, paint);
     }
 
     private void drawRobot(Canvas canvas) {
@@ -351,6 +422,7 @@ public class GridMap extends View{
         canvas.drawBitmap(bitmap, matrix, null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void addMoreObs(){
         //draw the new obstacle
         //call Obstacle class
@@ -358,12 +430,11 @@ public class GridMap extends View{
         bitmapArray.add(resizedObstacle);
         no_of_obs++;
 
-        //update obsLocation array
         obsLocation = obstacle.addMoreObs(no_of_obs, obsLocation);
 
-        //update toMove boolean list, default false
-        toMoveObs = obstacle.moveNewObs(no_of_obs, toMoveObs);
-        toMoveObs[no_of_obs-1] = false;
+        //update isSelectedObs boolean list, default false
+        isSelectedObs = obstacle.moveNewObs(no_of_obs, isSelectedObs);
+        isSelectedObs[no_of_obs-1] = false;
     }
 
     public void moveRobot(Canvas canvas, Bitmap bitmap, int leftImage, int topImage, int direction) {
@@ -412,7 +483,7 @@ public class GridMap extends View{
 
     public void setNewId (int newId){
         this.newId = newId;
-        System.out.println("gridmap new id:" + newId);
+        //System.out.println("gridmap new id:" + newId);
     }
 
     //Call game logic class
@@ -421,6 +492,8 @@ public class GridMap extends View{
     public void genMoreObs(){game.generateMoreObs();}
 
     public void moveObstacles(){game.moveObstacles();}
+
+    public void changeObsId(){game.changeObsId();}
 
     public void genRobot(){game.generateRobot();}
 

@@ -68,6 +68,17 @@ public class GameLogic {
         }
     }
 
+    public void changeObsId(){
+        int r, c;
+
+        for (r = 0; r < 20; r++){
+            for (c = 0; c < 20; c++){
+                gripMap[r][c] = 9;
+                moveRobot += 1;
+            }
+        }
+    }
+
     public void moveRobotForward(){
         int r, c;
         for (r = 0; r < 20; r++){

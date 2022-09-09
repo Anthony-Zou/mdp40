@@ -1,5 +1,6 @@
 package com.example.mdp40.MapGeneration;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,39 +9,102 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mdp40.R;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MapInit extends AppCompatActivity {
 
     private GridMap gridMap;
+    private GameLogic game;
     private Obstacle obstacle;
 
-    static String newId;
+    static int currentObs;
+    boolean changeId = false;
 
+    int[] currentId1;
+    String[] currentId;
+    String[] avaiId;
+    String[] allId;
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_init);
 
         gridMap = findViewById(R.id.gridMap);
+        game = new GameLogic();
+        obstacle = new Obstacle();
 
         //obstacle buttons
         Button genMapbtn = (Button)findViewById(R.id.genMap);
         Button genRobotBtn = (Button)findViewById(R.id.genRobot);
         Button moveObsBtn = (Button)findViewById(R.id.moveObs);
         Button addObsBtn = (Button)findViewById(R.id.addObs);
+        Button changeIdBtn = (Button)findViewById(R.id.changeId);
 
         //obstacle number picker
         NumberPicker obsId = (NumberPicker)findViewById(R.id.numberPicker);
-        obsId.setMinValue(11);
-        obsId.setMaxValue(40);
+        currentId1 = gridMap.obsLocation[3];
+        currentId = Arrays.stream(currentId1)
+                .mapToObj(String::valueOf)
+                .toArray(String[]::new);
+
+        System.out.println("currentId: "+Arrays.toString(currentId));
+        allId = obstacle.obsIdentity[0];
+        avaiId = new String[allId.length-currentId.length];
+
+       /* int avaiIdcount=0;
+        for(int i=0;i<allId.length;i++){
+            if(!Arrays.stream(currentId).anyMatch(allId[i]::equals)){
+                avaiId[avaiIdcount] = allId[i];
+                System.out.println("avaiId[]: "+ Arrays.toString(avaiId));
+                avaiIdcount++;
+            }
+        }*/
+        avaiId = obstacle.checkAvaiId(currentId);
+        obsId.setDisplayedValues(allId);
+        obsId.setMaxValue(allId.length-1);
+        obsId.setMinValue(0);
+        obsId.setWrapSelectorWheel(false);
+
 
         obsId.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                gridMap.setNewId(i1);
+                if (changeId) {
+                    boolean idUsed = true;
+                    System.out.println("avaiId now: "+Arrays.toString(avaiId));
+                    for (int j=0; j<avaiId.length; j++) {
+                        if (allId[i1].equals(avaiId[j])) {
+                            idUsed = false;
+                        }
+                    }
+                    if (!idUsed){
+                        //remove new id from avaiId, add back the old id
+                        System.out.println("avaiId old: "+Arrays.toString(avaiId));
+                        for (int k=0; k<avaiId.length; k++){
+                            if (avaiId[k].equals(allId[i1])){
+                                System.out.println("prev id: "+gridMap.obsLocation[3][currentObs]);
+                                avaiId[k] = String.valueOf(gridMap.obsLocation[3][currentObs]);
+                            }
+                        }
+                        gridMap.obsLocation[3][currentObs] = Integer.valueOf(allId[i1]);
+                        System.out.println("avaiId new: "+Arrays.toString(avaiId));
+                        gridMap.obsLocation[4][currentObs] = 18;
+                    }
+                    else{
+                        //gridMap.obsLocation[3][currentObs] = Integer.valueOf(allId[i]);
+                        Toast.makeText(MapInit.this, "This id has been used", Toast.LENGTH_LONG).show();
+                    }
+                    //System.out.println("i1"+i1);
+                    //System.out.println("Gridmap obslocation:"+ Arrays.toString(gridMap.obsLocation[3]));
+                }
             }
         });
 
@@ -78,6 +142,16 @@ public class MapInit extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 gridMap.genObstacles();
                 gridMap.invalidate();
+            }
+        });
+
+        //Click to change obstacle id
+        changeIdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.changeObsId();
+                gridMap.invalidate();
+                changeId = true;
             }
         });
 
@@ -162,7 +236,7 @@ public class MapInit extends AppCompatActivity {
         });
     }
 
-    public void changeId(int newId){
-        obstacle.setNewId(newId);
+    public void retrieveCurrentObs(int currentObs){
+        this.currentObs = currentObs;
     }
 }
