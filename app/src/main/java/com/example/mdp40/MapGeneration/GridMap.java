@@ -47,7 +47,7 @@ public class GridMap extends View{
     int no_of_obs = 4;
     private static int robottopImage = 17, robotleftImage = 0;
     //array contains obsticles' info: {left},{top},{angle}
-    int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{0,0,0,0},{11,12,13,14},{10,10,10,10}};
+    public int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{0,0,0,0},{11,12,13,14},{10,10,10,10}};
     boolean[] isSelectedObs = {false,false,false,false};
     private int size = 10;
     private int enlargeSize = 18;

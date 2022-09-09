@@ -21,7 +21,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.mdp40.MapGeneration.MapInit;
 import com.example.mdp40.bluetooth40.BluetoothDeviceActivity;
 import com.example.mdp40.bluetooth40.BluetoothListener;
 import com.example.mdp40.bluetooth40.BluetoothService;
@@ -179,9 +178,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             activityResultLauncher.launch(intent);
         }
     }
-    public void onMapClicked(View view) {
-     startActivity(new Intent(MainActivity.this, MapInit.class));
-    }
+//    public void onMapClicked(View view) {
+//     startActivity(new Intent(MainActivity.this, MapInit.class));
+//    }
 
 
 

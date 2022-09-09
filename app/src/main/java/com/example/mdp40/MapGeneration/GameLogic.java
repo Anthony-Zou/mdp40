@@ -10,7 +10,7 @@ public class GameLogic {
     private TextView robotY;
 
 
-    GameLogic(){
+    public GameLogic(){
         gripMap = new int[20][20];
         int r, c;
         for (r = 0; r < 20; r++){
@@ -134,7 +134,7 @@ public class GameLogic {
 
     //grid map
     public void displayLoc (int robotLeft, int robotTop){
-        robotX.setText(String.valueOf(robotLeft));
+       robotX.setText(String.valueOf(robotLeft));
         robotY.setText(String.valueOf(robotTop));
     }
 
