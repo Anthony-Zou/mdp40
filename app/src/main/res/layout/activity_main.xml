@@ -29,7 +29,15 @@
                 android:id="@+id/fragmentLeftPanel"
                 android:name="com.example.mdp40.fragments.leftPanelFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="175dp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentConsolePanel"
+                android:name="com.example.mdp40.fragments.consoleFragment"
+                android:layout_width="match_parent"
+                android:layout_height="166dp"
+
+                />
 
         </LinearLayout>
 
@@ -47,14 +55,6 @@
                 android:name="com.example.mdp40.fragments.mapPanelFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentConsolePanel"
-                android:name="com.example.mdp40.fragments.consoleFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                 />
 
         </LinearLayout>
 

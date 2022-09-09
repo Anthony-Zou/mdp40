@@ -7,11 +7,24 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mdp40.MapGeneration.GameLogic;
+import com.example.mdp40.MapGeneration.GridMap;
+import com.example.mdp40.MapGeneration.Obstacle;
 import com.example.mdp40.R;
-
 
 public class mapPanelFragment extends Fragment {
 
+    private GridMap gridMap;
+    private GameLogic game;
+    private Obstacle obstacle;
+
+    static int currentObs;
+    boolean changeId = false;
+
+    int[] currentId1;
+    String[] currentId;
+    String[] avaiId;
+    String[] allId;
 
     public mapPanelFragment() {
         // Required empty public constructor

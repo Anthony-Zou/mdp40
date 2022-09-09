@@ -6,57 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.mdp40.MapGeneration.GridMap
-        android:id="@+id/gridMap"
-        android:layout_width="551dp"
-        android:layout_height="478dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442"
-        custom:XColour="#3F51B5"
-        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>
-
-    <ImageView
-        android:id="@+id/downObs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintWidth_percent="0.05"
-        custom:srcCompat="@drawable/down"
-        tools:layout_editor_absoluteX="708dp"
-        tools:layout_editor_absoluteY="16dp"
-        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/clearCanvas"
+        android:id="@+id/genMap"
         android:layout_width="87dp"
         android:layout_height="28dp"
-        android:text="Clear canvas"
+        android:text="Generate Obstacles"
         android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-        app:layout_constraintVertical_bias="0.841" />
-
+        app:layout_constraintVertical_bias="0.241" />
 
     <Button
-        android:id="@+id/moveObs"
+        android:id="@+id/changeId"
         android:layout_width="87dp"
         android:layout_height="28dp"
-        android:text="Move Obstacles"
+        android:text="Change id"
         android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="0.517" />
 
     <Button
         android:id="@+id/addObs"
@@ -66,38 +42,25 @@
         android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintVertical_bias="0.427" />
 
-    <Button
-
-        android:id="@+id/changeId"
-        android:layout_width="87dp"
-        android:layout_height="28dp"
-        android:text="Change id"
-        android:textSize="5sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.768" />
 
     <Button
         android:id="@+id/clearCanvas"
-
         android:layout_width="87dp"
         android:layout_height="28dp"
-        android:text="Generate Obstacles"
+        android:text="Clear canvas"
         android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.691" />
 
     <Button
         android:id="@+id/genRobot"
@@ -107,12 +70,52 @@
         android:textSize="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.604" />
 
-        app:layout_constraintVertical_bias="0.892" />
+    <Button
+        android:id="@+id/moveObs"
 
+        android:layout_width="87dp"
+        android:layout_height="28dp"
+        android:text="Move Obstacles"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.334" />
+
+    <com.example.mdp40.MapGeneration.GridMap
+        android:id="@+id/gridMap"
+        android:layout_width="551dp"
+        android:layout_height="478dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.421"
+        custom:XColour="#3F51B5"
+        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>
+
+
+    <ImageView
+        android:id="@+id/turnLView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/forwardView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.389"
+        custom:srcCompat="@drawable/turnleft" />
 
     <ImageView
         android:id="@+id/forwardView"
@@ -120,47 +123,64 @@
         android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.844"
+
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741"
-        custom:srcCompat="@drawable/forward" />
-
-    <ImageView
-        android:id="@+id/backwardView"
-        android:layout_width="26dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.844"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.737"
-        custom:srcCompat="@drawable/backward" />
+        app:layout_constraintVertical_bias="0.817"
+        custom:srcCompat="@drawable/forward"/>
 
     <ImageView
         android:id="@+id/turnRView"
         android:layout_width="26dp"
         android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toEndOf="@+id/forwardView"
         app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintVertical_bias="0.389"
         custom:srcCompat="@drawable/turnright" />
 
     <ImageView
-        android:id="@+id/turnLView"
+        android:id="@+id/backwardView"
+
         android:layout_width="26dp"
         android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.385"
-        custom:srcCompat="@drawable/turnleft" />
+        app:layout_constraintTop_toBottomOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.729"
+        custom:srcCompat="@drawable/backward" />
+
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="44dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.891" />
+
+    <TextView
+        android:id="@+id/robotRightImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="@+id/robotY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946" />
 
     <TextView
         android:id="@+id/robotLeftImage"
@@ -169,23 +189,11 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
+
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toEndOf="@+id/robotX"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
-
-    <TextView
-        android:id="@+id/robotX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X:"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <TextView
         android:id="@+id/robotY"
@@ -195,33 +203,24 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
+
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.947" />
 
     <TextView
-        android:id="@+id/robotRightImage"
+        android:id="@+id/robotX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="X:"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="@+id/robotY"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.837" />
+        app:layout_constraintVertical_bias="0.879" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
