@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.mdp40.R;
+import com.example.mdp40.bluetooth40.BluetoothService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +65,8 @@ public class GridMap extends View{
     Bitmap rightBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.right);
     Bitmap robotBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.robot);
     ArrayList<Bitmap> bitmapArray = new ArrayList<Bitmap>();
+
+
 
     public GridMap(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

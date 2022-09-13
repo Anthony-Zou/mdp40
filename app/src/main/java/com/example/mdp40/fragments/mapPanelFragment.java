@@ -3,9 +3,12 @@ package com.example.mdp40.fragments;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -17,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.mdp40.Constants;
 import com.example.mdp40.MapGeneration.GameLogic;
 import com.example.mdp40.MapGeneration.GridMap;
 import com.example.mdp40.MapGeneration.Obstacle;
@@ -28,14 +32,45 @@ import java.util.Arrays;
 public class mapPanelFragment extends Fragment {
 
 
-    BluetoothService bluetoothService;
+    private Button forwardBtn;
+
+    private ArrayAdapter<String> consoleArrayAdapter;
+    private String connectedDeviceName;
+    private BluetoothService bluetoothService;
+    private final Handler handler = new Handler(Looper.myLooper(), message ->{
+        switch(message.what){
+            case Constants.MESSAGE_WRITE:
+                byte[] writeBuf = (byte[]) message.obj;
+                String writeMessage = new String(writeBuf);
+                consoleArrayAdapter.add("me: " + writeMessage);
+                break;
+            case Constants.MESSAGE_READ:
+                byte[] readBuf = (byte[]) message.obj;
+                String readMessage = new String(readBuf,0,message.arg1);
+                consoleArrayAdapter.add(connectedDeviceName +" : "+readMessage);
+                break;
+            case Constants.MESSAGE_DEVICE_NAME:
+                forwardBtn.setEnabled(true);
+                connectedDeviceName = message.getData().getString(Constants.DEVICE_NAME);
+                if(connectedDeviceName != null){
+                    Toast.makeText(getContext(),"Connected to "+ connectedDeviceName, Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }
+        return false;
+    });
+
+
     public mapPanelFragment() {
         // Required empty public constructor
     }
+
     private GridMap gridMap;
     private GameLogic game;
     private Obstacle obstacle;
-
+    private consoleFragment console ;
+    String textMessage= "";
     static int currentObs;
     boolean changeId = false;
 
@@ -52,6 +87,18 @@ public class mapPanelFragment extends Fragment {
 
     }
 
+
+
+
+
+
+    public void setBluetoothService(BluetoothService bluetoothService){
+        this.bluetoothService = bluetoothService;
+    }
+    Handler getHandler(){
+        return handler;
+    }
+
     @SuppressLint("NewApi")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -60,6 +107,15 @@ public class mapPanelFragment extends Fragment {
         gridMap = view.findViewById(R.id.gridMap);
         game = new GameLogic();
         obstacle = new Obstacle();
+        console = new consoleFragment();
+
+        ///
+
+
+        consoleArrayAdapter = new ArrayAdapter<>(getContext(),R.layout.item_message);
+
+
+        ///
 
         //obstacle buttons
         Button genMapbtn = (Button)view.findViewById(R.id.genMap);
@@ -67,6 +123,7 @@ public class mapPanelFragment extends Fragment {
         Button moveObsBtn = (Button)view.findViewById(R.id.moveObs);
         Button addObsBtn = (Button)view.findViewById(R.id.addObs);
         Button changeIdBtn = (Button)view.findViewById(R.id.changeId);
+        forwardBtn = (Button)view.findViewById(R.id.fowardBtn);
 
         //obstacle number picker
         NumberPicker obsId = (NumberPicker)view.findViewById(R.id.numberPicker);
@@ -182,11 +239,18 @@ public class mapPanelFragment extends Fragment {
 
         //Click to move robot forward
         forwardView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+
+
+
                 gridMap.moveForward();
                 gridMap.invalidate();
             }
+
+
         });
 
         //Click to move robot backward
@@ -237,6 +301,15 @@ public class mapPanelFragment extends Fragment {
                 gridMap.invalidate();
             }
         });
+
+        forwardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data ="Foward KGBKJBKLJH";
+  bluetoothService.write(data.getBytes());
+            }
+        });
+
     }
 
     @Override
@@ -248,6 +321,14 @@ public class mapPanelFragment extends Fragment {
     }
     public void retrieveCurrentObs(int currentObs){
         this.currentObs = currentObs;
+    }
+
+
+    private void onClickSend2() {
+//        String data ="Foward KGBKJBKLJH";
+//        bluetoothService.write(data.getBytes());
+        Toast.makeText(getContext(), "iygasjdgasiouhdhaosu", Toast.LENGTH_LONG).show();
+
     }
 
 }

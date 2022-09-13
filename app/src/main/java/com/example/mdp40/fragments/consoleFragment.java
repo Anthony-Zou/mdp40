@@ -52,7 +52,6 @@ public class consoleFragment extends Fragment {
     });
 
     public consoleFragment(){}
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -76,8 +75,12 @@ public class consoleFragment extends Fragment {
     private void onClickSend() {
         String data = editTextPrompt.getText().toString();
         editTextPrompt.setText("");
+        data ="Foward Test";
         bluetoothService.write(data.getBytes());
     }
+
+
+
     public void setBluetoothService(BluetoothService bluetoothService){
         this.bluetoothService = bluetoothService;
     }

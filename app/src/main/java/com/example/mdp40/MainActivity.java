@@ -25,6 +25,7 @@ import com.example.mdp40.bluetooth40.BluetoothDeviceActivity;
 import com.example.mdp40.bluetooth40.BluetoothListener;
 import com.example.mdp40.bluetooth40.BluetoothService;
 import com.example.mdp40.fragments.consoleFragment;
+import com.example.mdp40.fragments.mapPanelFragment;
 import com.example.mdp40.fragments.rightPanelFragment;
 
 import org.json.JSONException;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
     String deviceMACAddr = "";
     consoleFragment fragmentConsole;
     rightPanelFragment rightPanelFragment;
+    mapPanelFragment mapPanelFragment;
+
 
 
     @Override
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentConsole = (consoleFragment) fragmentManager.findFragmentById(R.id.fragmentConsolePanel);
         rightPanelFragment = (rightPanelFragment) fragmentManager.findFragmentById(R.id.fragmentRightPanel);
+        mapPanelFragment = (mapPanelFragment) fragmentManager.findFragmentById(R.id.fragmentMapPanel);
         LinearLayout layout = findViewById(R.id.main_layout);
         }
 
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         bluetoothService = new BluetoothService(btMsgHandler);
         fragmentConsole.setBluetoothService(bluetoothService);
         rightPanelFragment.setBluetoothService(bluetoothService);
+        mapPanelFragment.setBluetoothService(bluetoothService);
 
         // passes onBluetoothStatusChange defined here into BluetoothService so it can manipulate views
         bluetoothService.setBluetoothStatusChange(this);
