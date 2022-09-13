@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mdp40.R;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class MapInit extends AppCompatActivity {
 
@@ -59,14 +58,7 @@ public class MapInit extends AppCompatActivity {
         allId = obstacle.obsIdentity[0];
         avaiId = new String[allId.length-currentId.length];
 
-       /* int avaiIdcount=0;
-        for(int i=0;i<allId.length;i++){
-            if(!Arrays.stream(currentId).anyMatch(allId[i]::equals)){
-                avaiId[avaiIdcount] = allId[i];
-                System.out.println("avaiId[]: "+ Arrays.toString(avaiId));
-                avaiIdcount++;
-            }
-        }*/
+
         avaiId = obstacle.checkAvaiId(currentId);
         obsId.setDisplayedValues(allId);
         obsId.setMaxValue(allId.length-1);

@@ -17,34 +17,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/control_left"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
-            android:orientation="vertical"
-            android:paddingLeft="10dp">
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentLeftPanel"
-                android:name="com.example.mdp40.fragments.leftPanelFragment"
-                android:layout_width="match_parent"
-                android:layout_height="175dp" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentConsolePanel"
-                android:name="com.example.mdp40.fragments.consoleFragment"
-                android:layout_width="match_parent"
-                android:layout_height="166dp"
-
-                />
-
-        </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/grid_center"
-            android:layout_width="wrap_content"
+            android:layout_width="31dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_weight="0.55"
@@ -54,7 +30,7 @@
                 android:id="@+id/fragmentMapPanel"
                 android:name="com.example.mdp40.fragments.mapPanelFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -70,7 +46,15 @@
                 android:id="@+id/fragmentRightPanel"
                 android:name="com.example.mdp40.fragments.rightPanelFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="269dp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentConsolePanel"
+                android:name="com.example.mdp40.fragments.consoleFragment"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+
+                />
         </LinearLayout>
 
     </LinearLayout>
