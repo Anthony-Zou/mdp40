@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.mdp40.R;
 import com.example.mdp40.bluetooth40.BluetoothService;
+import com.example.mdp40.fragments.mapPanelFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +39,7 @@ public class GridMap extends View{
 
     private final GameLogic game;
     private final Obstacle obstacle;
+    mapPanelFragment mapPanelFragment;
 
     public static Rect rect1;
     public static Bitmap resizedDown, resizedUp, resizedLeft, resizedRight, resizedRobot;
@@ -65,6 +67,7 @@ public class GridMap extends View{
     Bitmap rightBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.right);
     Bitmap robotBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.robot);
     ArrayList<Bitmap> bitmapArray = new ArrayList<Bitmap>();
+    ArrayList<String> obsCurrentLoc = new ArrayList<String>();
 
 
 
@@ -112,14 +115,21 @@ public class GridMap extends View{
                 for (int j = 0; j < obsLocation[i].length; j++) {
                     System.out.print(obsLocation[i][j] + " ");
                 }
+                System.out.print("; ");
             }
             System.out.println();
+
+            //set latest robot location
+            mapPanelFragment = new mapPanelFragment();
+
+
 
             //add numbers to obstacles
             //System.out.println("gridmap new id update:" + newId);
             //System.out.println("todraw obslocation:"+ Arrays.toString(obsLocation[3]));
             for (int i = 0; i < no_of_obs; i++) {
                 //System.out.println("obsLoc changed to: "+ (obsLocation[3][i]));
+                System.out.println("i: "+ i);
                 addNumber(canvas, obsIdentity[1][obsLocation[3][i]-11],
                         (float) (obsLocation[0][i] + 0.4) * cellSize,
                         (float) (obsLocation[1][i] + 0.6) * cellSize, obsLocation[4][i]);
@@ -244,8 +254,8 @@ public class GridMap extends View{
                             obsLocation[0][i] = (int) Math.floor(nX / cellSize);
                             obsLocation[1][i] = (int) Math.floor(nY / cellSize);
                             if (abs(nX - origX) < cellSize && abs(nY - origY) < cellSize) {
-                                MapInit mapInit = new MapInit();
-                                mapInit.retrieveCurrentObs(i);
+                                mapPanelFragment = new mapPanelFragment();
+                                mapPanelFragment.retrieveCurrentObs(i);
                                 //System.out.println("gridmap i to be pass= "+i);
                                 //change grid map matrix to 10
                             }

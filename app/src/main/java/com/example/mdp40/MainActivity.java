@@ -124,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         return false;
     });
 
+
+
+
     // handles the runnable for reconnecting to bluetooth device
     Handler reconnectHandler = new Handler();
 

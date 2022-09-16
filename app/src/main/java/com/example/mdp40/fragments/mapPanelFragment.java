@@ -72,6 +72,7 @@ public class mapPanelFragment extends Fragment {
     private consoleFragment console ;
     String textMessage= "";
     static int currentObs;
+    static int currentRobot;
     boolean changeId = false;
 
     int[] currentId1;
@@ -135,14 +136,13 @@ public class mapPanelFragment extends Fragment {
         System.out.println("currentId: "+Arrays.toString(currentId));
         allId = obstacle.obsIdentity[0];
         avaiId = new String[allId.length-currentId.length];
-
-
+        //bluetoothService.write(data.getBytes());
         avaiId = obstacle.checkAvaiId(currentId);
         obsId.setDisplayedValues(allId);
         obsId.setMaxValue(allId.length-1);
         obsId.setMinValue(0);
         obsId.setWrapSelectorWheel(false);
-
+                //String data ="{'x':"+gridMap.robotleftImage+",'y':"+gridMap.robottopImage+",'d':'w'}";
 
         obsId.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -188,8 +188,8 @@ public class mapPanelFragment extends Fragment {
 
         //robot coordinates
         TextView robotLeftImage = (TextView) view.findViewById(R.id.robotLeftImage);
-        TextView robotRightImage = (TextView) view.findViewById(R.id.robotRightImage);
-        gridMap.displayRobotPos(robotLeftImage, robotRightImage);
+        TextView robotTopImage = (TextView) view.findViewById(R.id.robotRightImage);
+        gridMap.displayRobotPos(robotLeftImage, robotTopImage);
 
         //clear button
         Button clearBtn = (Button)view.findViewById(R.id.clearCanvas);
@@ -339,9 +339,15 @@ public class mapPanelFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_panel_center, container, false);
 
     }
+
     public void retrieveCurrentObs(int currentObs){
         this.currentObs = currentObs;
     }
+
+//    public void retrieveCurrentRobot(int currentRobotL, int currentRobotR){
+//        this.currentRobotL = currentRobotL;
+//        this.currentRobotR = currentRobotR;
+//    }
 
 
     private void onClickSend2() {
