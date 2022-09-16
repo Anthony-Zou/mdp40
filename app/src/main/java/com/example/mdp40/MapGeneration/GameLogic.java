@@ -123,6 +123,29 @@ public class GameLogic {
         }
     }
 
+    public void rotateRobotBackLeft(){
+        int r, c;
+        for (r = 0; r < 20; r++){
+            for (c = 0; c < 20; c++){
+                if(moveRobot > 0) {
+                    gripMap[r][c] = 10;
+                }
+            }
+        }
+    }
+
+    public void rotateRobotBackRight(){
+        int r, c;
+        for (r = 0; r < 20; r++){
+            for (c = 0; c < 20; c++){
+                if(moveRobot > 0) {
+                    gripMap[r][c] = 11;
+                }
+            }
+        }
+    }
+
+
     //map init
     public void setRobotX (TextView robotX){
         this.robotX = robotX;

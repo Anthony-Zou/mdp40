@@ -67,36 +67,36 @@ public class Robot {
         return moveValues;
     }
 
-    public int[] rotateRobot(int leftImage, int topImage, int direction, int faceDirection, int[][]obsLocation) {
+    public int[] rotateRobot(int leftImage, int topImage, int direction, int faceDirection, int rotation, int[][]obsLocation) {
         int[] rotateValues = new int[3];
         if (direction == 1) {
-            switch (faceDirection - 90) {
+            switch (faceDirection - 90*rotation) {
                 case 270:
-                    if (isLeftRotatable(leftImage+1, topImage-1, 270, obsLocation)) {
+                    if (isLeftRotatable(leftImage+1, topImage-1*rotation, 270, obsLocation)) {
                         leftImage += 1;
-                        topImage -= 1;
-                        faceDirection -= 90;
+                        topImage -= 1*rotation;
+                        faceDirection -= 90*rotation;
                     }
                     break;
                 case 180:
-                    if (isLeftRotatable(leftImage-1, topImage-1,180, obsLocation)) {
-                        leftImage -= 1;
+                    if (isLeftRotatable(leftImage-1*rotation, topImage-1,180, obsLocation)) {
+                        leftImage -= 1*rotation;
                         topImage -= 1;
-                        faceDirection -= 90;
+                        faceDirection -= 90*rotation;
                     }
                     break;
                 case 90:
-                    if (isLeftRotatable(leftImage-1, topImage+1, 90, obsLocation)) {
+                    if (isLeftRotatable(leftImage-1, topImage+1*rotation, 90, obsLocation)) {
                         leftImage -= 1;
-                        topImage += 1;
-                        faceDirection -= 90;
+                        topImage += 1*rotation;
+                        faceDirection -= 90*rotation;
                     }
                     break;
                 default:
-                    if (isLeftRotatable(leftImage+1, topImage+1, 360, obsLocation)) {
-                        leftImage += 1;
+                    if (isLeftRotatable(leftImage+1*rotation, topImage+1, 360, obsLocation)) {
+                        leftImage += 1*rotation;
                         topImage += 1;
-                        faceDirection -= 90;
+                        faceDirection -= 90*rotation;
                     }
             }
         } else {

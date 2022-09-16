@@ -124,10 +124,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toEndOf="@+id/forwardView"
         app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.369"
+        app:layout_constraintVertical_bias="0.203"
         custom:srcCompat="@drawable/turnright" />
 
     <ImageView
@@ -137,10 +137,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772"
+        app:layout_constraintVertical_bias="0.75"
         custom:srcCompat="@drawable/forward" />
 
     <ImageView
@@ -164,10 +164,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.369"
+        app:layout_constraintVertical_bias="0.203"
         custom:srcCompat="@drawable/turnleft" />
 
     <TextView
@@ -182,6 +182,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.873" />
+
+
+    <ImageView
+        android:id="@+id/turnBLView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+
+        android:rotation="-33"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/forwardView"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.912"
+        custom:srcCompat="@drawable/turnleft" />
+
+    <ImageView
+        android:id="@+id/turnBRView"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        android:rotation="33"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toEndOf="@+id/forwardView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.91"
+        custom:srcCompat="@drawable/turnright" />
 
     <TextView
         android:id="@+id/robotRightImage"

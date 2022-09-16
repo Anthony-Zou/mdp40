@@ -183,6 +183,8 @@ public class mapPanelFragment extends Fragment {
         ImageView backwardView = (ImageView)view.findViewById(R.id.backwardView);
         ImageView turnLView = (ImageView)view.findViewById(R.id.turnLView);
         ImageView turnRView = (ImageView)view.findViewById(R.id.turnRView);
+        ImageView turnBLView = (ImageView)view.findViewById(R.id.turnBLView);
+        ImageView turnBRView = (ImageView)view.findViewById(R.id.turnBRView);
 
         //robot coordinates
         TextView robotLeftImage = (TextView) view.findViewById(R.id.robotLeftImage);
@@ -276,6 +278,24 @@ public class mapPanelFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 gridMap.rotateRight();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to rotate robot back left
+        turnBLView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.rotateBackLeft();
+                gridMap.invalidate();
+            }
+        });
+
+        //Click to rotate robot back right
+        turnBRView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridMap.rotateBackRight();
                 gridMap.invalidate();
             }
         });
