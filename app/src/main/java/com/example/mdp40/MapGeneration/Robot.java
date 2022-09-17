@@ -69,65 +69,131 @@ public class Robot {
 
     public int[] rotateRobot(int leftImage, int topImage, int direction, int faceDirection, int rotation, int[][]obsLocation) {
         int[] rotateValues = new int[3];
-        if (direction == 1) {
-            switch (faceDirection - 90*rotation) {
-                case 270:
-                    if (isLeftRotatable(leftImage+1, topImage-1*rotation, 270, obsLocation)) {
-                        leftImage += 1;
-                        topImage -= 1*rotation;
-                        faceDirection -= 90*rotation;
-                    }
-                    break;
-                case 180:
-                    if (isLeftRotatable(leftImage-1*rotation, topImage-1,180, obsLocation)) {
-                        leftImage -= 1*rotation;
-                        topImage -= 1;
-                        faceDirection -= 90*rotation;
-                    }
-                    break;
-                case 90:
-                    if (isLeftRotatable(leftImage-1, topImage+1*rotation, 90, obsLocation)) {
-                        leftImage -= 1;
-                        topImage += 1*rotation;
-                        faceDirection -= 90*rotation;
-                    }
-                    break;
-                default:
-                    if (isLeftRotatable(leftImage+1*rotation, topImage+1, 360, obsLocation)) {
-                        leftImage += 1*rotation;
-                        topImage += 1;
-                        faceDirection -= 90*rotation;
-                    }
+        if (rotation == 1) {
+            if (direction == 1) {
+                switch (faceDirection - 90) {
+                    case 270:
+                        if (isLeftRotatable(leftImage + 1, topImage - 1, 270, obsLocation)) {
+                            leftImage += 1;
+                            topImage -= 1;
+                            faceDirection -= 90;
+                        }
+                        break;
+                    case 180:
+                        if (isLeftRotatable(leftImage - 1, topImage - 1, 180, obsLocation)) {
+                            leftImage -= 1;
+                            topImage -= 1;
+                            faceDirection -= 90;
+                        }
+                        break;
+                    case 90:
+                        if (isLeftRotatable(leftImage - 1, topImage + 1, 90, obsLocation)) {
+                            leftImage -= 1;
+                            topImage += 1 ;
+                            faceDirection -= 90;
+                        }
+                        break;
+                    default:
+                        if (isLeftRotatable(leftImage + 1, topImage + 1, 360, obsLocation)) {
+                            leftImage += 1;
+                            topImage += 1;
+                            faceDirection -= 90;
+                        }
+                }
+            } else {
+                switch (faceDirection + 90) {
+                    case 270:
+                        if (isRightRotatable(leftImage - 1, topImage - 1, 270, obsLocation)) {
+                            leftImage -= 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 180:
+                        if (isRightRotatable(leftImage - 1, topImage + 1, 180, obsLocation)) {
+                            leftImage -= 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 90:
+                        if (isRightRotatable(leftImage + 1, topImage + 1, 90, obsLocation)) {
+                            leftImage += 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    default:
+                        if (isRightRotatable(leftImage + 1, topImage - 1, 0, obsLocation)) {
+                            leftImage += 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                }
             }
-        } else {
-            switch (faceDirection + 90) {
-                case 270:
-                    if (isRightRotatable(leftImage-1, topImage-1, 270, obsLocation)) {
-                        leftImage -= 1;
-                        topImage -= 1;
-                        faceDirection += 90;
-                    }
-                    break;
-                case 180:
-                    if (isRightRotatable(leftImage-1, topImage+1, 180, obsLocation)) {
-                        leftImage -= 1;
-                        topImage += 1;
-                        faceDirection += 90;
-                    }
-                    break;
-                case 90:
-                    if (isRightRotatable(leftImage+1, topImage+1, 90, obsLocation)) {
-                        leftImage += 1;
-                        topImage += 1;
-                        faceDirection += 90;
-                    }
-                    break;
-                default:
-                    if (isRightRotatable(leftImage+1, topImage-1, 0, obsLocation)) {
-                        leftImage += 1;
-                        topImage -= 1;
-                        faceDirection += 90;
-                    }
+        }
+
+        if (rotation == -1) {
+            if (direction == 1) {
+                switch (faceDirection) {
+                    case 270:
+                        if (isLeftRotatable(leftImage, topImage, faceDirection, obsLocation)) {
+                            leftImage -= 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 180:
+                        if (isLeftRotatable(leftImage, topImage, faceDirection, obsLocation)) {
+                            leftImage += 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 90:
+                        if (isLeftRotatable(leftImage, topImage, faceDirection, obsLocation)) {
+                            leftImage += 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    default:
+                        if (isLeftRotatable(leftImage, topImage, faceDirection, obsLocation)) {
+                            leftImage -= 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                }
+            } else {
+                switch (faceDirection + 90) {
+                    case 270:
+                        if (isRightRotatable(leftImage - 1, topImage - 1, 270, obsLocation)) {
+                            leftImage -= 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 180:
+                        if (isRightRotatable(leftImage - 1, topImage + 1, 180, obsLocation)) {
+                            leftImage -= 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    case 90:
+                        if (isRightRotatable(leftImage + 1, topImage + 1, 90, obsLocation)) {
+                            leftImage += 1;
+                            topImage += 1;
+                            faceDirection += 90;
+                        }
+                        break;
+                    default:
+                        if (isRightRotatable(leftImage + 1, topImage - 1, 0, obsLocation)) {
+                            leftImage += 1;
+                            topImage -= 1;
+                            faceDirection += 90;
+                        }
+                }
             }
         }
         rotateValues[0] = faceDirection;
@@ -156,26 +222,27 @@ public class Robot {
         return false;
     }
 
-    public boolean isLeftRotatable (int NextrobotLeft, int NextrobotTop, int faceDirection, int[][] obsLoc){
+    public boolean isLeftRotatable (int nextRobotLeft, int NextrobotTop, int faceDirection, int[][] obsLoc){
         int i;
-        System.out.println("checking robot next image: "+NextrobotLeft+","+NextrobotTop);
-        if(NextrobotLeft>17 || NextrobotLeft<0 || NextrobotTop>17 || NextrobotTop<0){
+        System.out.println("checking robot next image: "+nextRobotLeft+","+NextrobotTop);
+        if(nextRobotLeft>17 || nextRobotLeft<0 || NextrobotTop>17 || NextrobotTop<0){
             return false;
         }
+        //need to edit to match rotation
 
         switch(faceDirection){
             case 270:
                 for (i = 0; i < obsLoc[0].length;i++){
                     //System.out.println("checking "+ i+"th obstacle");
 
-                    if ((NextrobotLeft == obsLoc[0][i]  || NextrobotLeft+1==obsLoc[0][i])){
+                    if ((nextRobotLeft == obsLoc[0][i]  || nextRobotLeft+1==obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop == obsLoc[1][i]){
                             //System.out.println("top matches");
                             return false;
                         }
                     }
-                    if((NextrobotLeft+2 == obsLoc[0][i])){
+                    if((nextRobotLeft+2 == obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop <= obsLoc[1][i] && NextrobotTop+3 >= obsLoc[1][i]){
                             //System.out.println("top matches");
@@ -188,14 +255,14 @@ public class Robot {
                 for (i = 0; i < obsLoc[0].length;i++){
                     //System.out.println("checking "+ i+"th obstacle");
 
-                    if ((NextrobotLeft+1 == obsLoc[0][i]  && NextrobotLeft+3>=obsLoc[0][i])){
+                    if ((nextRobotLeft+1 == obsLoc[0][i]  && nextRobotLeft+3>=obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop == obsLoc[1][i]){
                             //System.out.println("top matches");
                             return false;
                         }
                     }
-                    if((NextrobotLeft == obsLoc[0][i])){
+                    if((nextRobotLeft == obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop <= obsLoc[1][i] &&NextrobotTop+2 >= obsLoc[1][i]){
                             //System.out.println("top matches");
@@ -208,14 +275,14 @@ public class Robot {
                 for (i = 0; i < obsLoc[0].length;i++){
                     //System.out.println("checking "+ i+"th obstacle");
 
-                    if ((NextrobotLeft+1 == obsLoc[0][i]  || NextrobotLeft+2==obsLoc[0][i])){
+                    if ((nextRobotLeft+1 == obsLoc[0][i]  || nextRobotLeft+2==obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop+2 == obsLoc[1][i]){
                             //System.out.println("top matches");
                             return false;
                         }
                     }
-                    if((NextrobotLeft == obsLoc[0][i])){
+                    if((nextRobotLeft == obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop-1 <= obsLoc[1][i] && NextrobotTop+2 >= obsLoc[1][i]){
                             //System.out.println("top matches");
@@ -228,14 +295,14 @@ public class Robot {
                 for (i = 0; i < obsLoc[0].length;i++){
                     //System.out.println("checking "+ i+"th obstacle");
 
-                    if ((NextrobotLeft-1 <= obsLoc[0][i] && NextrobotLeft+1 >= obsLoc[0][i])){
+                    if ((nextRobotLeft-1 <= obsLoc[0][i] && nextRobotLeft+1 >= obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop+2 == obsLoc[1][i]){
                             //System.out.println("top matches");
                             return false;
                         }
                     }
-                    if((NextrobotLeft+2 == obsLoc[0][i])){
+                    if((nextRobotLeft+2 == obsLoc[0][i])){
                         //System.out.println("left matches for "+i+"th obstacle");
                         if(NextrobotTop <= obsLoc[1][i] &&NextrobotTop+2 >= obsLoc[1][i]){
                             //System.out.println("top matches");

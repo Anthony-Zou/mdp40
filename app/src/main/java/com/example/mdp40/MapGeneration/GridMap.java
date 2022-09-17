@@ -96,7 +96,7 @@ public class GridMap extends View{
         int dimension = Math.min(getMeasuredWidth(), getMeasuredHeight());
         cellSize = dimension/20;
 
-        setMeasuredDimension(500, 500);
+        setMeasuredDimension(580, 580);
     }
 
     @Override
@@ -106,9 +106,8 @@ public class GridMap extends View{
 
         drawGridMap(canvas);
         if (game.getGripMap()[0][0] != -1) {
+            //obstacle control
             drawObstacles(canvas);
-            drawRobot(canvas);
-            game.displayLoc(robotleftImage, robottopImage);
             obsIdentity = obstacle.getObsIdentity();
             //Check obsLocation array
             for (int i = 0; i < obsLocation.length; i++) {
@@ -119,21 +118,26 @@ public class GridMap extends View{
             }
             System.out.println();
 
-            //set latest robot location
-            mapPanelFragment = new mapPanelFragment();
-
-
-
             //add numbers to obstacles
             //System.out.println("gridmap new id update:" + newId);
             //System.out.println("todraw obslocation:"+ Arrays.toString(obsLocation[3]));
             for (int i = 0; i < no_of_obs; i++) {
                 //System.out.println("obsLoc changed to: "+ (obsLocation[3][i]));
-                System.out.println("i: "+ i);
+                //System.out.println("i: "+ i);
                 addNumber(canvas, obsIdentity[1][obsLocation[3][i]-11],
                         (float) (obsLocation[0][i] + 0.4) * cellSize,
                         (float) (obsLocation[1][i] + 0.6) * cellSize, obsLocation[4][i]);
             }
+
+            //robot control
+            drawRobot(canvas);
+            game.displayLoc(robotleftImage, robottopImage);
+            //set latest robot location
+            mapPanelFragment = new mapPanelFragment();
+            System.out.println("robot moving1: "+ robotleftImage+ " "+ robottopImage + " " + faceDirection);
+            mapPanelFragment.retrieveCurrentRobot(robotleftImage, robottopImage, faceDirection);
+            System.out.println("robot moving2: "+ robotleftImage+ " "+ robottopImage + " " + faceDirection);
+
         }
         else {
             clearAll();
@@ -362,6 +366,7 @@ public class GridMap extends View{
 
     private void drawRobot(Canvas canvas) {
         resizedRobot = getResizedBitmap(robotBitmap, 3);
+        //place robot on the grid map
         if (game.getGripMap()[0][0] == 2) {
             rotateBitmap(canvas, resizedRobot, robotleftImage, robottopImage, robotAngle);
         }

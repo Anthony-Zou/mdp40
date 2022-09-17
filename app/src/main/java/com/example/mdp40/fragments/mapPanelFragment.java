@@ -62,6 +62,7 @@ public class mapPanelFragment extends Fragment {
     });
 
 
+
     public mapPanelFragment() {
         // Required empty public constructor
     }
@@ -72,7 +73,10 @@ public class mapPanelFragment extends Fragment {
     private consoleFragment console ;
     String textMessage= "";
     static int currentObs;
-    static int currentRobot;
+    static int currentRobotL;
+    static int currentRobotR;
+    String direction = new String();
+    static int faceDirection;
     boolean changeId = false;
 
     int[] currentId1;
@@ -142,7 +146,7 @@ public class mapPanelFragment extends Fragment {
         obsId.setMaxValue(allId.length-1);
         obsId.setMinValue(0);
         obsId.setWrapSelectorWheel(false);
-                //String data ="{'x':"+gridMap.robotleftImage+",'y':"+gridMap.robottopImage+",'d':'w'}";
+
 
         obsId.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -244,21 +248,20 @@ public class mapPanelFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
-
-
-
+                //“ROBOT, <x>, <y>, <direction>”
+                //System.out.println("faceDirection: " + faceDirection);
+                sendBTMessage(bluetoothService);
+                //System.out.println("CurrentRobotL: " + currentRobotL);
                 gridMap.moveForward();
                 gridMap.invalidate();
             }
-
-
         });
 
         //Click to move robot backward
         backwardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendBTMessage(bluetoothService);
                 gridMap.moveBackward();
                 gridMap.invalidate();
             }
@@ -268,6 +271,7 @@ public class mapPanelFragment extends Fragment {
         turnLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendBTMessage(bluetoothService);
                 gridMap.rotateLeft();
                 gridMap.invalidate();
             }
@@ -277,6 +281,7 @@ public class mapPanelFragment extends Fragment {
         turnRView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendBTMessage(bluetoothService);
                 gridMap.rotateRight();
                 gridMap.invalidate();
             }
@@ -326,7 +331,7 @@ public class mapPanelFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String data ="Foward KGBKJBKLJH";
-  bluetoothService.write(data.getBytes());
+                bluetoothService.write(data.getBytes());
             }
         });
 
@@ -344,10 +349,37 @@ public class mapPanelFragment extends Fragment {
         this.currentObs = currentObs;
     }
 
-//    public void retrieveCurrentRobot(int currentRobotL, int currentRobotR){
-//        this.currentRobotL = currentRobotL;
-//        this.currentRobotR = currentRobotR;
-//    }
+    public void retrieveCurrentRobot(int currentRobotL, int currentRobotR, int faceDirection){
+        this.currentRobotL = currentRobotL;
+        this.currentRobotR = currentRobotR;
+        this.faceDirection = faceDirection;
+        System.out.println("CurrentRobotL retrieve method: " + currentRobotL+ " "+ currentRobotR + " " + faceDirection);
+    }
+
+    public String getFaceDirection(int faceDirection){
+        String direction = new String();
+        if (faceDirection == 90){
+            direction ="S";
+        }
+        else if (faceDirection == 180){
+            direction = "W";
+        }
+        else if (faceDirection == 270){
+            direction = "N";
+        }
+        else{
+            direction = "E";
+        }
+        System.out.println("direction getFaceDirection: " + direction);
+        return direction;
+    }
+
+    public void sendBTMessage(BluetoothService bluetoothService){
+        direction = getFaceDirection(faceDirection);
+        String data ="ROBOT, <" + currentRobotL +">, <" + currentRobotR
+                + ">, <" + direction + ">";
+        bluetoothService.write(data.getBytes());
+    }
 
 
     private void onClickSend2() {
