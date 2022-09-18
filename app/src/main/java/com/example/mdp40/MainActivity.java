@@ -33,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements BluetoothListener{
     private ActivityResultLauncher<Intent> activityResultLauncher;
@@ -40,11 +41,12 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
     BluetoothService bluetoothService;
     BluetoothDevice bluetoothDevice;
     String deviceMACAddr = "";
+    HashMap<String, String> receivedText = new HashMap<String, String>();
+    ArrayList<String> textHistory = new ArrayList<>();
+    int textCount = 0;
     consoleFragment fragmentConsole;
     rightPanelFragment rightPanelFragment;
     mapPanelFragment mapPanelFragment;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 
             try {
                 JSONObject json = new JSONObject(strMessage);
+                System.out.println("strMessage: "+json.getInt("x")+" "+json.getInt("y")
+                                    +" "+json.getString("direction"));
+                onReceivedMsgChanged(json.getInt("x"), json.getInt("y"), json.getString("direction"));
                 // rpiMessageHandler(json);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -190,7 +195,28 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 //     startActivity(new Intent(MainActivity.this, MapInit.class));
 //    }
 
+    public void onReceivedMsgChanged(int x, int y, String direction) {
+        receivedText.put("x", String.valueOf(x));
+        receivedText.put("y", String.valueOf(y));
+        receivedText.put("direction", direction);
+        textHistory.add(receivedText.toString());
+        textCount+=1;
+        if (textCount>10){
+            textHistory.remove(0);
+        }
 
+        //convert all lines into a single line
+        StringBuilder builder = new StringBuilder();
+        for (String details : textHistory) {
+            builder.append(details + "\n");
+        }
+
+        //System.out.println("textHistory: " + textHistory.toString());
+
+        runOnUiThread(() -> {
+            rightPanelFragment.getMsgReceived().setText(builder.toString());
+        });
+    }
 
     public void Toast(String msg){
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();

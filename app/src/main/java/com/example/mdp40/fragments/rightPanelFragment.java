@@ -1,20 +1,31 @@
 package com.example.mdp40.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mdp40.Constants;
 import com.example.mdp40.R;
 import com.example.mdp40.bluetooth40.BluetoothService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class rightPanelFragment extends Fragment {
     Button btnConnect;
     BluetoothService bluetoothService;
+    TextView msgReceived;
+
+    String textReceived;
+
     public boolean btEnabled = false;
     public rightPanelFragment() {
     }
@@ -31,6 +42,7 @@ public class rightPanelFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         btnConnect = view.findViewById(R.id.btnConnect);
+        msgReceived = view.findViewById(R.id.msgReceived);
 
     }
     public void setBluetoothService(BluetoothService bluetoothService) {
@@ -39,6 +51,12 @@ public class rightPanelFragment extends Fragment {
 
     public Button getBtnConnect() {
         return btnConnect;
+    }
+
+    public TextView getMsgReceived() {return msgReceived; }
+
+    public void setReceivedText(String text){
+        this.textReceived = text;
     }
 
 }
