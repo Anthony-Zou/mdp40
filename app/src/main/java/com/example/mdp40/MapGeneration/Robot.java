@@ -22,6 +22,7 @@ public class Robot {
                         System.out.println("obstacles' topimages="+ Arrays.toString(obsLocation[1]));
                         topImage -= 1;
                     }
+
                     break;
                 case 180:
                     if (!isBlocked(leftImage-1, topImage, obsLocation)) {

@@ -11,7 +11,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -21,6 +24,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.mdp40.MapGeneration.GameLogic;
+import com.example.mdp40.MapGeneration.GridMap;
 import com.example.mdp40.bluetooth40.BluetoothDeviceActivity;
 import com.example.mdp40.bluetooth40.BluetoothListener;
 import com.example.mdp40.bluetooth40.BluetoothService;
@@ -40,10 +45,12 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
     BluetoothAdapter bluetoothAdapter;
     BluetoothService bluetoothService;
     BluetoothDevice bluetoothDevice;
+
     String deviceMACAddr = "";
-    HashMap<String, String> receivedText = new HashMap<String, String>();
+    public static HashMap<String, String> receivedText = new HashMap<String, String>();
     ArrayList<String> textHistory = new ArrayList<>();
     int textCount = 0;
+
     consoleFragment fragmentConsole;
     rightPanelFragment rightPanelFragment;
     mapPanelFragment mapPanelFragment;
@@ -54,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         setContentView(R.layout.activity_main);
         initViews();
         initBluetooth();
-
     }
 
     private void initViews() {
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         rightPanelFragment = (rightPanelFragment) fragmentManager.findFragmentById(R.id.fragmentRightPanel);
         mapPanelFragment = (mapPanelFragment) fragmentManager.findFragmentById(R.id.fragmentMapPanel);
         LinearLayout layout = findViewById(R.id.main_layout);
-        }
+    }
 
     private void initBluetooth() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -118,10 +124,73 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 
             try {
                 JSONObject json = new JSONObject(strMessage);
-                System.out.println("strMessage: "+json.getInt("x")+" "+json.getInt("y")
-                                    +" "+json.getString("direction"));
-                onReceivedMsgChanged(json.getInt("x"), json.getInt("y"), json.getString("direction"));
-                // rpiMessageHandler(json);
+                if(json.getString("mode").equals("updateRobot")) {
+                    /*System.out.println("btMsgHandler if");
+                    System.out.println("strMessage: " + json.getInt("x") + " " + json.getInt("y")
+                            + " " + json.getString("direction"));*/
+                    onReceivedMsgChanged(json.getInt("x"), json.getInt("y"), json.getString("direction"),
+                                  "updateRobot");
+                    // rpiMessageHandler(json);
+                    GridMap.robotleftImage = json.getInt("x");
+                    GridMap.robottopImage = json.getInt("y");
+                    System.out.println("y: " + json.getInt("y"));
+                    if (json.getString("direction").equals("N")) {
+                        GridMap.robotAngle = 270;
+                    } else if (json.getString("direction").equals("W")) {
+                        GridMap.robotAngle = 180;
+                    } else if (json.getString("direction").equals("S")) {
+                        GridMap.robotAngle = 90;
+                    } else {
+                        GridMap.robotAngle = 0;
+                    }
+                }
+                else if(json.getString("mode").equals("moveRobot")) {
+                    onReceivedMsgChanged(0, 0, json.getString("action"), "moveRobot");
+                    String action =json.getString("action");
+                    switch (action){
+                        case "Q":
+                            ImageView turnLView = (ImageView)findViewById(R.id.turnLView);
+                            turnLView.performClick();
+                            break;
+                        case "W":
+                            ImageView forwardView = (ImageView)findViewById(R.id.forwardView);
+                            forwardView.performClick();
+                            break;
+                        case "E":
+                            ImageView turnRView = (ImageView)findViewById(R.id.turnRView);
+                            turnRView.performClick();
+                            break;
+                        case "A":
+                            ImageView turnBLView = (ImageView)findViewById(R.id.turnBLView);
+                            turnBLView.performClick();
+                            break;
+                        case "S":
+                            ImageView backwardView = (ImageView)findViewById(R.id.backwardView);
+                            backwardView.performClick();
+                            break;
+                        case "D":
+                            ImageView turnBRView = (ImageView)findViewById(R.id.turnBRView);
+                            turnBRView.performClick();
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+                //update obstacle id
+                else if(json.getString("mode").equals("updateId")) {
+                    onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"), json.getString("mode"), "updateId");
+                    String oldId = json.getString("oldId");
+                    String newId = json.getString("newId");
+                    GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
+                    for (int i = 0; i < gridMap.obsLocation[3].length; i++) {
+                        if (String.valueOf(gridMap.obsLocation[3][i]).equals(oldId)) {
+                            gridMap.obsLocation[3][i] = Integer.parseInt(newId);
+                            gridMap.obsLocation[4][i] = 18;
+                            gridMap.invalidate();
+                        }
+                    }
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -174,6 +243,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 
         runOnUiThread(() -> {
             rightPanelFragment.getBtnConnect().setText(text.get(status));
+            if (rightPanelFragment.getBtnConnect().getText().equals("Connected")){
+                runOnUiThread(() -> {
+                    mapPanelFragment.getRobotStatus().setText("Ready to start");
+                });
+            }
             rightPanelFragment.getBtnConnect().setTextColor(Color.parseColor(col.get(status)));
 
             if (bluetoothService.state == BluetoothService.STATE_NONE) {
@@ -195,23 +269,44 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 //     startActivity(new Intent(MainActivity.this, MapInit.class));
 //    }
 
-    public void onReceivedMsgChanged(int x, int y, String direction) {
-        receivedText.put("x", String.valueOf(x));
-        receivedText.put("y", String.valueOf(y));
-        receivedText.put("direction", direction);
+    public void onReceivedMsgChanged(int x, int y, String direction, String mode) {
+        System.out.println("check mode: "+mode);
+        if (mode.equals("updateRobot")) {
+            receivedText.put("x", String.valueOf(x));
+            receivedText.put("y", String.valueOf(y));
+            receivedText.put("direction", direction);
+            receivedText.remove("newId");
+            receivedText.remove("oldId");
+            receivedText.remove("action");
+            mapPanelFragment.getBtnClicked().performClick();
+        }
+        else if (mode.equals("moveRobot")) {
+            receivedText.put("action", direction);
+            receivedText.remove("x");
+            receivedText.remove("y");
+            receivedText.remove("direction");
+            receivedText.remove("newId");
+            receivedText.remove("oldId");
+        }
+        else{
+            receivedText.put("oldId", String.valueOf(x));
+            receivedText.put("newId", String.valueOf(y));
+            receivedText.remove("x");
+            receivedText.remove("y");
+            receivedText.remove("action");
+            receivedText.remove("direction");
+        }
         textHistory.add(receivedText.toString());
         textCount+=1;
         if (textCount>10){
             textHistory.remove(0);
         }
-
+        System.out.println("receivedText: " + String.valueOf(receivedText));
         //convert all lines into a single line
         StringBuilder builder = new StringBuilder();
         for (String details : textHistory) {
             builder.append(details + "\n");
         }
-
-        //System.out.println("textHistory: " + textHistory.toString());
 
         runOnUiThread(() -> {
             rightPanelFragment.getMsgReceived().setText(builder.toString());

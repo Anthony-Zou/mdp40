@@ -8,6 +8,8 @@ public class GameLogic {
     private static int moveRobot = 0;
     private TextView robotX;
     private TextView robotY;
+    private int robotTop;
+    private int robotLeft;
 
 
     public GameLogic(){
@@ -158,7 +160,12 @@ public class GameLogic {
     //grid map
     public void displayLoc (int robotLeft, int robotTop){
        robotX.setText(String.valueOf(robotLeft));
-        robotY.setText(String.valueOf(robotTop));
+       robotY.setText(String.valueOf(robotTop));
+    }
+
+    public void updateRobotPos(int robotLeft, int robotTop){
+        this.robotLeft = robotLeft;
+        this.robotTop = robotTop;
     }
 
     public void clearCanvas(){

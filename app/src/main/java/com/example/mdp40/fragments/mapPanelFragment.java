@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,11 @@ import com.example.mdp40.MapGeneration.Obstacle;
 import com.example.mdp40.R;
 import com.example.mdp40.bluetooth40.BluetoothService;
 
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class mapPanelFragment extends Fragment {
-
 
     private Button forwardBtn;
 
@@ -75,6 +77,8 @@ public class mapPanelFragment extends Fragment {
     static int currentObs;
     static int currentRobotL;
     static int currentRobotR;
+    TextView robotStatus;
+    Button genRobotBtn;
     String direction = new String();
     static int faceDirection;
     boolean changeId = false;
@@ -124,11 +128,11 @@ public class mapPanelFragment extends Fragment {
 
         //obstacle buttons
         Button genMapbtn = (Button)view.findViewById(R.id.genMap);
-        Button genRobotBtn = (Button)view.findViewById(R.id.genRobot);
+        genRobotBtn = (Button)view.findViewById(R.id.genRobot);
         Button moveObsBtn = (Button)view.findViewById(R.id.moveObs);
         Button addObsBtn = (Button)view.findViewById(R.id.addObs);
         Button changeIdBtn = (Button)view.findViewById(R.id.changeId);
-        forwardBtn = (Button)view.findViewById(R.id.fowardBtn);
+        Button updateObsBtn = (Button)view.findViewById(R.id.updateObs);
 
         //obstacle number picker
         NumberPicker obsId = (NumberPicker)view.findViewById(R.id.numberPicker);
@@ -193,6 +197,7 @@ public class mapPanelFragment extends Fragment {
         //robot coordinates
         TextView robotLeftImage = (TextView) view.findViewById(R.id.robotLeftImage);
         TextView robotTopImage = (TextView) view.findViewById(R.id.robotRightImage);
+        robotStatus = (TextView) view.findViewById(R.id.robotStatus);
         gridMap.displayRobotPos(robotLeftImage, robotTopImage);
 
         //clear button
@@ -227,6 +232,7 @@ public class mapPanelFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Robot generated",
                         Toast.LENGTH_LONG).show();
+                robotStatus.setText("Ready to Start");
                 gridMap.genRobot();
                 gridMap.invalidate();
             }
@@ -245,13 +251,13 @@ public class mapPanelFragment extends Fragment {
 
         //Click to move robot forward
         forwardView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //“ROBOT, <x>, <y>, <direction>”
                 //System.out.println("faceDirection: " + faceDirection);
-                sendBTMessage(bluetoothService);
+                sendBTMessage(bluetoothService, "W");
                 //System.out.println("CurrentRobotL: " + currentRobotL);
+               // robotStatus.setText("Moving Forward");
                 gridMap.moveForward();
                 gridMap.invalidate();
             }
@@ -261,7 +267,8 @@ public class mapPanelFragment extends Fragment {
         backwardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService);
+                sendBTMessage(bluetoothService, "S");
+               // robotStatus.setText("Moving Backward");
                 gridMap.moveBackward();
                 gridMap.invalidate();
             }
@@ -271,7 +278,7 @@ public class mapPanelFragment extends Fragment {
         turnLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService);
+                sendBTMessage(bluetoothService, "Q");
                 gridMap.rotateLeft();
                 gridMap.invalidate();
             }
@@ -281,7 +288,8 @@ public class mapPanelFragment extends Fragment {
         turnRView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService);
+                sendBTMessage(bluetoothService, "E");
+                //robotStatus.setText("Turning Right");
                 gridMap.rotateRight();
                 gridMap.invalidate();
             }
@@ -316,6 +324,13 @@ public class mapPanelFragment extends Fragment {
             }
         });
 
+        updateObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendObsInfo(bluetoothService);
+            }
+        });
+
         //Click to clear all
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -327,13 +342,13 @@ public class mapPanelFragment extends Fragment {
             }
         });
 
-        forwardBtn.setOnClickListener(new View.OnClickListener() {
+        /*forwardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String data ="Foward KGBKJBKLJH";
                 bluetoothService.write(data.getBytes());
             }
-        });
+        });*/
 
     }
 
@@ -374,18 +389,69 @@ public class mapPanelFragment extends Fragment {
         return direction;
     }
 
-    public void sendBTMessage(BluetoothService bluetoothService){
+    int oldX=0;
+    int oldY=0;
+    public void sendBTMessage(BluetoothService bluetoothService, String action){
         direction = getFaceDirection(faceDirection);
-        String data ="ROBOT, <" + currentRobotL +">, <" + currentRobotR
-                + ">, <" + direction + ">";
-        bluetoothService.write(data.getBytes());
+        /*String data ="ROBOT, <" + currentRobotL +">, <" + currentRobotR
+                + ">, <" + direction + ">";*/
+        robotStatus.setText("Moving "+action);
+        if(oldX==currentRobotL && oldY==currentRobotR){
+            robotStatus.setText("Encountered obstacle");
+            Log.d("test","encountered  obstacle");
+        }
+        oldX=currentRobotL;
+        oldY=currentRobotR;
+
+        //Log.d("test",String.valueOf(oldX)+":"+String.valueOf(currentRobotL));
+        String data2 = "{'device':'ROBOT', 'X':"+currentRobotL+" " +
+              ",'Y':"+currentRobotR+",'D':"+direction+",'A':"+action+"}";
+        bluetoothService.write(data2.getBytes());
     }
 
+    public void sendObsInfo(BluetoothService bluetoothService){
+        String direction;
+        int convY;
+        int[][] obsLoc = gridMap.obsLocation;
+        ArrayList<String> latestLoc = new ArrayList<String>();
+
+        for (int i = 0; i < obsLoc[0].length; i++) {
+            direction = getFaceDirection(obsLoc[2][i]);
+            //convert (0,0) at axis top left to (0,0) at axis bottom left
+            convY = 20 - obsLoc[1][i];
+            String obs = obsLoc[0][i] + "," + convY + "," + direction + " " + "|" + " ";
+            latestLoc.add(obs);
+        }
+        System.out.println("sendObsInfo: " + latestLoc.toString());
+
+        //convert all lines into a single line
+        StringBuilder builder = new StringBuilder();
+        for (String details : latestLoc) {
+            builder.append(details);
+        }
+        bluetoothService.write(builder.toString().getBytes());
+    }
+
+    public TextView getRobotStatus() {return robotStatus; }
+
+    public Button getBtnClicked() {
+        return genRobotBtn;
+    }
+
+//    public ImageView forward() {
+//\        return forwardView ;}
+//    public View backward() {
+//            return backwardView;}
+//    public View frontLeft() {
+//    return turnLView;}
+//    public View frontRight() {
+//            return turnRView;}
 
     private void onClickSend2() {
 //        String data ="Foward KGBKJBKLJH";
 //        bluetoothService.write(data.getBytes());
         Toast.makeText(getContext(), "iygasjdgasiouhdhaosu", Toast.LENGTH_LONG).show();
+
 
     }
 

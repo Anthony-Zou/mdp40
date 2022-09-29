@@ -20,12 +20,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.mdp40.MainActivity;
 import com.example.mdp40.R;
 import com.example.mdp40.bluetooth40.BluetoothService;
 import com.example.mdp40.fragments.mapPanelFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class GridMap extends View{
 
@@ -48,9 +50,10 @@ public class GridMap extends View{
     private float origX, origY;
 
     int no_of_obs = 4;
-    private static int robottopImage = 17, robotleftImage = 0;
+    public static int robottopImage = 17, robotleftImage = 0;
+    private static HashMap<String, String> robotNewLoc = new HashMap<String, String>();
     //array contains obsticles' info: {left},{top},{angle}
-    public int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{0,0,0,0},{11,12,13,14},{10,10,10,10}};
+    public int[][] obsLocation = {{8,15,1,13},{7,15,12,5},{270,180,90,0},{11,12,13,14},{10,10,10,10}};
     boolean[] isSelectedObs = {false,false,false,false};
     private int size = 10;
     private int enlargeSize = 18;
@@ -58,8 +61,8 @@ public class GridMap extends View{
     private int newId;
     private boolean isOverlap = false;
 
-    private int robotAngle = 0;
-    private static int faceDirection = 0;
+    public static int robotAngle = 270;
+    public static int faceDirection = 270;
 
     Bitmap downBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.down);
     Bitmap upBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.up);
@@ -119,8 +122,6 @@ public class GridMap extends View{
             System.out.println();
 
             //add numbers to obstacles
-            //System.out.println("gridmap new id update:" + newId);
-            //System.out.println("todraw obslocation:"+ Arrays.toString(obsLocation[3]));
             for (int i = 0; i < no_of_obs; i++) {
                 //System.out.println("obsLoc changed to: "+ (obsLocation[3][i]));
                 //System.out.println("i: "+ i);
@@ -134,10 +135,7 @@ public class GridMap extends View{
             game.displayLoc(robotleftImage, robottopImage);
             //set latest robot location
             mapPanelFragment = new mapPanelFragment();
-            System.out.println("robot moving1: "+ robotleftImage+ " "+ robottopImage + " " + faceDirection);
             mapPanelFragment.retrieveCurrentRobot(robotleftImage, robottopImage, faceDirection);
-            System.out.println("robot moving2: "+ robotleftImage+ " "+ robottopImage + " " + faceDirection);
-
         }
         else {
             clearAll();
@@ -150,6 +148,7 @@ public class GridMap extends View{
         isSelectedObs = new boolean[]{false, false, false, false};
         robotleftImage = 0;
         robottopImage = 17;
+        faceDirection = 0;
         no_of_obs = 4;
     }
 
@@ -219,6 +218,9 @@ public class GridMap extends View{
                             obsLocation[1][i] = (int) Math.floor(nY / cellSize);*/
                             if (abs(nX - origX) < cellSize && abs(nY - origY) < cellSize) {
                                 obsLocation[2][i] += 90;
+                                if (obsLocation[2][i] == 360){
+                                    obsLocation[2][i] -= 360;
+                                }
                             }
                             System.out.println("nX Up: " + nX);
                             System.out.println("nY Up: " + nY);
@@ -302,9 +304,9 @@ public class GridMap extends View{
             resizedRight = getResizedBitmap(rightBitmap, 1);
 
             //add default bitmaps to an array
-            bitmapArray.add(resizedDown);
-            bitmapArray.add(resizedUp);
-            bitmapArray.add(resizedLeft);
+            bitmapArray.add(resizedRight);
+            bitmapArray.add(resizedRight);
+            bitmapArray.add(resizedRight);
             bitmapArray.add(resizedRight);
 
             //add more obstacles
