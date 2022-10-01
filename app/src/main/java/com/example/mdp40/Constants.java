@@ -18,12 +18,12 @@ public interface Constants {
     String ALGactionDisconnect = "ALG | disconnect";
 
     // Android to STM
-    String STMactionQ = "STM | Q";
-    String STMactionW = "STM | W";
-    String STMactionE = "STM | E";
-    String STMactionA = "STM | A";
-    String STMactionS = "STM | S";
-    String STMactionD = "STM | D";
+    String StmActionQ = "STM | Q000";
+    String StmActionW = "STM | W";
+    String StmActionE = "STM | E000";
+    String StmActionA = "STM | A000";
+    String StmActionS = "STM | S";
+    String StmActionD = "STM | D000";
     // Android message types
 
 }

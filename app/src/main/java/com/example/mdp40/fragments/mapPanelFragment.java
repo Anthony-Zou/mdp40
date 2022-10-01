@@ -1,5 +1,12 @@
 package com.example.mdp40.fragments;
 
+import static com.example.mdp40.Constants.StmActionA;
+import static com.example.mdp40.Constants.StmActionD;
+import static com.example.mdp40.Constants.StmActionE;
+import static com.example.mdp40.Constants.StmActionQ;
+import static com.example.mdp40.Constants.StmActionS;
+import static com.example.mdp40.Constants.StmActionW;
+
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,7 +35,6 @@ import com.example.mdp40.MapGeneration.Obstacle;
 import com.example.mdp40.R;
 import com.example.mdp40.bluetooth40.BluetoothService;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -253,11 +259,9 @@ public class mapPanelFragment extends Fragment {
         forwardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //“ROBOT, <x>, <y>, <direction>”
-                //System.out.println("faceDirection: " + faceDirection);
-                sendBTMessage(bluetoothService, "W");
-                //System.out.println("CurrentRobotL: " + currentRobotL);
-               // robotStatus.setText("Moving Forward");
+                String speed = "010";
+                sendBTMessage(bluetoothService, StmActionW+speed);
+
                 gridMap.moveForward();
                 gridMap.invalidate();
             }
@@ -267,7 +271,8 @@ public class mapPanelFragment extends Fragment {
         backwardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService, "S");
+                String speed = "010";
+                sendBTMessage(bluetoothService, StmActionS+speed);
                // robotStatus.setText("Moving Backward");
                 gridMap.moveBackward();
                 gridMap.invalidate();
@@ -278,7 +283,7 @@ public class mapPanelFragment extends Fragment {
         turnLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService, "Q");
+                sendBTMessage(bluetoothService, StmActionQ);
                 gridMap.rotateLeft();
                 gridMap.invalidate();
             }
@@ -288,7 +293,7 @@ public class mapPanelFragment extends Fragment {
         turnRView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendBTMessage(bluetoothService, "E");
+                sendBTMessage(bluetoothService, StmActionE);
                 //robotStatus.setText("Turning Right");
                 gridMap.rotateRight();
                 gridMap.invalidate();
@@ -299,6 +304,7 @@ public class mapPanelFragment extends Fragment {
         turnBLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendBTMessage(bluetoothService, StmActionA);
                 gridMap.rotateBackLeft();
                 gridMap.invalidate();
             }
@@ -308,6 +314,7 @@ public class mapPanelFragment extends Fragment {
         turnBRView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendBTMessage(bluetoothService, StmActionD);
                 gridMap.rotateBackRight();
                 gridMap.invalidate();
             }
@@ -395,7 +402,7 @@ public class mapPanelFragment extends Fragment {
         direction = getFaceDirection(faceDirection);
         /*String data ="ROBOT, <" + currentRobotL +">, <" + currentRobotR
                 + ">, <" + direction + ">";*/
-        robotStatus.setText("Moving "+action);
+        robotStatus.setText(action);
         if(oldX==currentRobotL && oldY==currentRobotR){
             robotStatus.setText("Encountered obstacle");
             Log.d("test","encountered  obstacle");
