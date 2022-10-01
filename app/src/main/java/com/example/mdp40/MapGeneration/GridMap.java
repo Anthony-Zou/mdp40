@@ -148,7 +148,8 @@ public class GridMap extends View{
         isSelectedObs = new boolean[]{false, false, false, false};
         robotleftImage = 0;
         robottopImage = 17;
-        faceDirection = 0;
+        faceDirection = 270;
+        robotAngle = 270;
         no_of_obs = 4;
     }
 
@@ -385,11 +386,11 @@ public class GridMap extends View{
             if (faceDirection == 0){
                 faceDirection = 360;
             }
-            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1, 1);
+            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1);
         }
         //turn right
         else if (game.getGripMap()[0][0] == 6) {
-            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1, 1);
+            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1);
             if (faceDirection == 360){
                 faceDirection = 0;
             }
@@ -399,11 +400,11 @@ public class GridMap extends View{
             if (faceDirection == 360){
                 faceDirection = 0;
             }
-            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1, -1);
+            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1);
         }
         //turn back right
         else if (game.getGripMap()[0][0] == 11) {
-            rotateRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1, -1);
+            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1);
             if (faceDirection == 0){
                 faceDirection = 360;
             }
@@ -490,13 +491,31 @@ public class GridMap extends View{
         robottopImage = topImage;
     }
 
-    public void rotateRobot(Canvas canvas, Bitmap bitmap, int leftImage, int topImage, int direction, int rotation){
+    public void rotateRobot(Canvas canvas, Bitmap bitmap, int leftImage, int topImage, int direction){
         //System.out.println("rotate robot init left: " + leftImage);
         //System.out.println("rotate robot init top: " + topImage);
         //Call Robot class
         Robot robot = new Robot();
         int[] movements = new int[3];
-        movements = robot.rotateRobot(leftImage, topImage, direction, faceDirection, rotation, obsLocation);
+        movements = robot.rotateRobot(leftImage, topImage, direction, faceDirection, obsLocation);
+        faceDirection = movements[0];
+        leftImage = movements[1];
+        topImage = movements[2];
+
+        //Rotate and draw robot
+        Matrix matrix = new Matrix();
+        matrix.setRotate(faceDirection, bitmap.getWidth()/2, bitmap.getHeight()/2);
+        matrix.postTranslate(leftImage * cellSize, topImage * cellSize);
+        canvas.drawBitmap(bitmap, matrix, null);
+        robotleftImage = leftImage;
+        robottopImage = topImage;
+    }
+
+    public void rotateBackRobot(Canvas canvas, Bitmap bitmap, int leftImage, int topImage, int direction){
+        //Call Robot class
+        Robot robot = new Robot();
+        int[] movements = new int[3];
+        movements = robot.rotateBackRobot(leftImage, topImage, direction, faceDirection, obsLocation);
         faceDirection = movements[0];
         leftImage = movements[1];
         topImage = movements[2];

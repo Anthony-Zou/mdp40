@@ -137,7 +137,6 @@ public class mapPanelFragment extends Fragment {
 
         //obstacle buttons
         Button genMapbtn = (Button)view.findViewById(R.id.genMap);
-        genRobotBtn = (Button)view.findViewById(R.id.genRobot);
         Button moveObsBtn = (Button)view.findViewById(R.id.moveObs);
         Button addObsBtn = (Button)view.findViewById(R.id.addObs);
         Button changeIdBtn = (Button)view.findViewById(R.id.changeId);
@@ -196,6 +195,7 @@ public class mapPanelFragment extends Fragment {
         });
 
         //robot buttons
+        genRobotBtn = (Button)view.findViewById(R.id.genRobot);
         ImageView forwardView = (ImageView)view.findViewById(R.id.forwardView);
         ImageView backwardView = (ImageView)view.findViewById(R.id.backwardView);
         ImageView turnLView = (ImageView)view.findViewById(R.id.turnLView);
@@ -212,7 +212,10 @@ public class mapPanelFragment extends Fragment {
         //clear button
         Button clearBtn = (Button)view.findViewById(R.id.clearCanvas);
 
+        //gridmap & algo buttons
         GridMap gridMap = (GridMap)view.findViewById(R.id.gridMap);
+        Button planPathBtn = (Button)view.findViewById(R.id.planPath);
+        Button disconnectAlgoBtn = (Button)view.findViewById(R.id.disconnect);
 
         //Click to generate obstacles
         genMapbtn.setOnClickListener(new View.OnClickListener() {
@@ -334,10 +337,27 @@ public class mapPanelFragment extends Fragment {
             }
         });
 
+        //Click to send obstacle location to algo
         updateObsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendObsInfo(bluetoothService);
+            }
+        });
+
+        //Click to send message algo and plan the shortest path
+        planPathBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlgActionPlan_path();
+            }
+        });
+
+        //Click to disconnect algo
+        disconnectAlgoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlgActionDisconnect();
             }
         });
 
@@ -351,15 +371,6 @@ public class mapPanelFragment extends Fragment {
                 gridMap.invalidate();
             }
         });
-
-        /*forwardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String data ="Foward KGBKJBKLJH";
-                bluetoothService.write(data.getBytes());
-            }
-        });*/
-
     }
 
     @Override
@@ -471,8 +482,5 @@ public class mapPanelFragment extends Fragment {
 //        String data ="Foward KGBKJBKLJH";
 //        bluetoothService.write(data.getBytes());
         Toast.makeText(getContext(), "iygasjdgasiouhdhaosu", Toast.LENGTH_LONG).show();
-
-
     }
-
 }
