@@ -1,5 +1,8 @@
 package com.example.mdp40.fragments;
 
+import static com.example.mdp40.Constants.AlgActionDisconnect;
+import static com.example.mdp40.Constants.AlgActionPlan_path;
+import static com.example.mdp40.Constants.AlgActionSetObs;
 import static com.example.mdp40.Constants.StmActionA;
 import static com.example.mdp40.Constants.StmActionD;
 import static com.example.mdp40.Constants.StmActionE;
@@ -443,6 +446,16 @@ public class mapPanelFragment extends Fragment {
 
     public Button getBtnClicked() {
         return genRobotBtn;
+    }
+
+    public void AlgActionSetObs(){
+        sendBTMessage(bluetoothService,AlgActionSetObs);
+    }
+    public void AlgActionPlan_path(){
+        sendBTMessage(bluetoothService,AlgActionPlan_path);
+    }
+    public void AlgActionDisconnect(){
+        sendBTMessage(bluetoothService,AlgActionDisconnect);
     }
 
 //    public ImageView forward() {

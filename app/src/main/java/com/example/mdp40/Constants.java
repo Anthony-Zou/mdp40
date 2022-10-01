@@ -13,9 +13,9 @@ public interface Constants {
     String TOAST = "toast";
 
     // Android to Algo
-    String ALGactionSetObs = "ALG | set_obstacles:";
-    String ALGactionPlac_path ="ALG | plan_path";
-    String ALGactionDisconnect = "ALG | disconnect";
+    String AlgActionSetObs = "ALG | set_obstacles:";
+    String AlgActionPlan_path ="ALG | plan_path";
+    String AlgActionDisconnect = "ALG | disconnect";
 
     // Android to STM
     String StmActionQ = "STM | Q000";
