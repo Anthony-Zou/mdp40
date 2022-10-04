@@ -250,6 +250,16 @@ public class mapPanelFragment extends Fragment {
                 robotStatus.setText("Ready to Start");
                 gridMap.genRobot();
                 gridMap.invalidate();
+
+//                for(int i = 0; i <= 3; i++) {
+//                    SystemClock.sleep(100);
+//                    gridMap.moveForward();
+//                    gridMap.invalidate();
+//                    Toast.makeText(getContext(),
+//                i+"(s) passed",
+//                    Toast.LENGTH_LONG).show();
+//                }
+
             }
         });
 
