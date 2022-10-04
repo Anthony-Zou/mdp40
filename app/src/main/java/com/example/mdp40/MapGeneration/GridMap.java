@@ -563,5 +563,9 @@ public class GridMap extends View{
     public void rotateBackLeft(){ game.rotateRobotBackLeft(); }
 
     public void rotateBackRight(){ game.rotateRobotBackRight(); }
+
+    public GameLogic getGameLogic() {
+        return this.game;
+    }
 }
 

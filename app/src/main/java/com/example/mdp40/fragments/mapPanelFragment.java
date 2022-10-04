@@ -97,6 +97,9 @@ public class mapPanelFragment extends Fragment {
     String[] avaiId;
     String[] allId;
 
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -443,10 +446,11 @@ public class mapPanelFragment extends Fragment {
             String obs = obsLoc[0][i] + "," + convY + "," + direction + " " + "|" + " ";
             latestLoc.add(obs);
         }
-        System.out.println("sendObsInfo: " + latestLoc.toString());
+        System.out.println(AlgActionSetObs + latestLoc.toString());
 
         //convert all lines into a single line
         StringBuilder builder = new StringBuilder();
+        builder.append(AlgActionSetObs);
         for (String details : latestLoc) {
             builder.append(details);
         }
@@ -459,9 +463,7 @@ public class mapPanelFragment extends Fragment {
         return genRobotBtn;
     }
 
-    public void AlgActionSetObs(){
-        sendBTMessage(bluetoothService,AlgActionSetObs);
-    }
+
     public void AlgActionPlan_path(){
         sendBTMessage(bluetoothService,AlgActionPlan_path);
     }

@@ -11,9 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -123,6 +121,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             String strMessage = new String(readBuf, 0, message.arg1);
 
             try {
+//                '{"mode":"updateRobot", "x":value, "y":value, "direction":"value"}'
+//
+//                '{"mode":"moveRobot", "action":"value"}'
+//
+//                '{"mode":"updateId", "oldId":value, "newId":value}'
                 JSONObject json = new JSONObject(strMessage);
                 if(json.getString("mode").equals("updateRobot")) {
                     /*System.out.println("btMsgHandler if");
@@ -147,28 +150,42 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                 else if(json.getString("mode").equals("moveRobot")) {
                     onReceivedMsgChanged(0, 0, json.getString("action"), "moveRobot");
                     String action =json.getString("action");
-                    switch (action){
-                        case "Q":
+//                    Toast(Character.toString(action.charAt(0)));
+//                    Toast(Character.toString(action.charAt(2)));
+                    Integer integer = Integer.valueOf(Character.toString(action.charAt(2)));
+                    switch (action.charAt(0)){
+                        case 'Q':
                             ImageView turnLView = (ImageView)findViewById(R.id.turnLView);
+
                             turnLView.performClick();
-                            break;
-                        case "W":
+//                            break;
+                        case 'W':
                             ImageView forwardView = (ImageView)findViewById(R.id.forwardView);
-                            forwardView.performClick();
+                            GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
+                            GameLogic gameLogic = gridMap.getGameLogic();
+
+                            for(int i = 0; i< integer; i++){
+                                gameLogic.moveRobotForward();
+                                Toast("Clicking "+ i);
+                            }
+                            //forwardView.performClick();
                             break;
-                        case "E":
+                        case 'E':
                             ImageView turnRView = (ImageView)findViewById(R.id.turnRView);
                             turnRView.performClick();
                             break;
-                        case "A":
+                        case 'A':
                             ImageView turnBLView = (ImageView)findViewById(R.id.turnBLView);
                             turnBLView.performClick();
                             break;
-                        case "S":
+                        case 'S':
                             ImageView backwardView = (ImageView)findViewById(R.id.backwardView);
-                            backwardView.performClick();
+                            for(int i = 0; i< integer; i++){
+                                backwardView.performClick();
+                            }
+
                             break;
-                        case "D":
+                        case 'D':
                             ImageView turnBRView = (ImageView)findViewById(R.id.turnBRView);
                             turnBRView.performClick();
                             break;
@@ -179,13 +196,17 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                 }
                 //update obstacle id
                 else if(json.getString("mode").equals("updateId")) {
-                    onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"), json.getString("mode"), "updateId");
+                    onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"),
+                            json.getString("mode"), "updateId");
                     String oldId = json.getString("oldId");
                     String newId = json.getString("newId");
                     GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
                     for (int i = 0; i < gridMap.obsLocation[3].length; i++) {
+                       // Toast(String.valueOf(gridMap.obsLocation[3][i]));
                         if (String.valueOf(gridMap.obsLocation[3][i]).equals(oldId)) {
+                          //  Toast("old obstacle found");
                             gridMap.obsLocation[3][i] = Integer.parseInt(newId);
+                            //Toast("new int passed in");
                             gridMap.obsLocation[4][i] = 18;
                             gridMap.invalidate();
                         }
