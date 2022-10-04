@@ -150,25 +150,14 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                 else if(json.getString("mode").equals("moveRobot")) {
                     onReceivedMsgChanged(0, 0, json.getString("action"), "moveRobot");
                     String action =json.getString("action");
-//                    Toast(Character.toString(action.charAt(0)));
-//                    Toast(Character.toString(action.charAt(2)));
-                    Integer integer = Integer.valueOf(Character.toString(action.charAt(2)));
                     switch (action.charAt(0)){
                         case 'Q':
                             ImageView turnLView = (ImageView)findViewById(R.id.turnLView);
-
                             turnLView.performClick();
-//                            break;
+                            break;
                         case 'W':
                             ImageView forwardView = (ImageView)findViewById(R.id.forwardView);
-                            GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
-                            GameLogic gameLogic = gridMap.getGameLogic();
-
-                            for(int i = 0; i< integer; i++){
-                                gameLogic.moveRobotForward();
-                                Toast("Clicking "+ i);
-                            }
-                            //forwardView.performClick();
+                            forwardView.performClick();
                             break;
                         case 'E':
                             ImageView turnRView = (ImageView)findViewById(R.id.turnRView);
@@ -180,10 +169,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                             break;
                         case 'S':
                             ImageView backwardView = (ImageView)findViewById(R.id.backwardView);
-                            for(int i = 0; i< integer; i++){
-                                backwardView.performClick();
-                            }
-
+                            backwardView.performClick();
                             break;
                         case 'D':
                             ImageView turnBRView = (ImageView)findViewById(R.id.turnBRView);
