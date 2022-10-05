@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         if (message.what == Constants.MESSAGE_READ) {
             byte[] readBuf = (byte[]) message.obj;
             String strMessage = new String(readBuf, 0, message.arg1);
+            GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
 
             try {
 //                '{"mode":"updateRobot", "x":value, "y":value, "direction":"value"}'
@@ -152,28 +153,28 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                     String action =json.getString("action");
                     switch (action.charAt(0)){
                         case 'Q':
-                            ImageView turnLView = (ImageView)findViewById(R.id.turnLView);
-                            turnLView.performClick();
+                            gridMap.rotateLeft();
+                            gridMap.invalidate();
                             break;
                         case 'W':
-                            ImageView forwardView = (ImageView)findViewById(R.id.forwardView);
-                            forwardView.performClick();
+                            gridMap.moveForward();
+                            gridMap.invalidate();
                             break;
                         case 'E':
-                            ImageView turnRView = (ImageView)findViewById(R.id.turnRView);
-                            turnRView.performClick();
+                            gridMap.rotateRight();
+                            gridMap.invalidate();
                             break;
                         case 'A':
-                            ImageView turnBLView = (ImageView)findViewById(R.id.turnBLView);
-                            turnBLView.performClick();
+                            gridMap.rotateBackLeft();
+                            gridMap.invalidate();
                             break;
                         case 'S':
-                            ImageView backwardView = (ImageView)findViewById(R.id.backwardView);
-                            backwardView.performClick();
+                            gridMap.moveBackward();
+                            gridMap.invalidate();
                             break;
                         case 'D':
-                            ImageView turnBRView = (ImageView)findViewById(R.id.turnBRView);
-                            turnBRView.performClick();
+                            gridMap.rotateBackRight();
+                            gridMap.invalidate();
                             break;
                         default:
                             break;
@@ -186,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                             json.getString("mode"), "updateId");
                     String oldId = json.getString("oldId");
                     String newId = json.getString("newId");
-                    GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
                     for (int i = 0; i < gridMap.obsLocation[3].length; i++) {
                        // Toast(String.valueOf(gridMap.obsLocation[3][i]));
                         if (String.valueOf(gridMap.obsLocation[3][i]).equals(oldId)) {
@@ -204,10 +204,10 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                     int x = json.getInt("x");
                     int y = json.getInt("y");
                     int newId = json.getInt("newId");
-                    GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
-                    int convY = 20 - y;
+                    int convX = x - 1;
+                    int convY = 19 - y + 1;
                     for (int i = 0; i < gridMap.obsLocation[0].length; i++) {
-                        if (gridMap.obsLocation[0][i] == x && gridMap.obsLocation[1][i] == convY)  {
+                        if (gridMap.obsLocation[0][i] == convX && gridMap.obsLocation[1][i] == convY)  {
                             gridMap.obsLocation[3][i] = newId;
                             gridMap.obsLocation[4][i] = 18;
                             gridMap.invalidate();

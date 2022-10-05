@@ -448,6 +448,7 @@ public class mapPanelFragment extends Fragment {
     public void sendObsInfo(BluetoothService bluetoothService){
         String direction;
         int convY;
+        int convX;
         int[][] obsLoc = gridMap.obsLocation;
         ArrayList<String> latestLoc = new ArrayList<String>();
 
@@ -455,7 +456,8 @@ public class mapPanelFragment extends Fragment {
             direction = getFaceDirection(obsLoc[2][i]);
             //convert (0,0) at axis top left to (0,0) at axis bottom left
             convY = 20 - obsLoc[1][i];
-            String obs = obsLoc[0][i] + "," + convY + "," + direction + " " + "|" + " ";
+            convX = obsLoc[0][i] + 1;
+            String obs = convX + "," + convY + "," + direction + " " + "|" + " ";
             latestLoc.add(obs);
         }
         System.out.println(AlgActionSetObs + latestLoc.toString());
