@@ -205,8 +205,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                     int y = json.getInt("y");
                     int newId = json.getInt("newId");
                     GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
+                    int convY = 20 - y;
                     for (int i = 0; i < gridMap.obsLocation[0].length; i++) {
-                        if (gridMap.obsLocation[0][i] == x && gridMap.obsLocation[1][i] == y)  {
+                        if (gridMap.obsLocation[0][i] == x && gridMap.obsLocation[1][i] == convY)  {
                             gridMap.obsLocation[3][i] = newId;
                             gridMap.obsLocation[4][i] = 18;
                             gridMap.invalidate();
