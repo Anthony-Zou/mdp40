@@ -268,6 +268,8 @@ public class mapPanelFragment extends Fragment {
                 String speed = "010";
                 sendBTMessage(bluetoothService, StmActionW+speed);
 
+                System.out.println("check game logic map:" + game.getGripMap()[0][0]);
+
                 gridMap.moveForward();
                 gridMap.invalidate();
             }

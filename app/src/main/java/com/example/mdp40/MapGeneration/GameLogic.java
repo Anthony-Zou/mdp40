@@ -90,6 +90,7 @@ public class GameLogic {
                 }
             }
         }
+        System.out.println("check game logic:" + gripMap[0][0]);
     }
 
     public void moveRobotBackward(){

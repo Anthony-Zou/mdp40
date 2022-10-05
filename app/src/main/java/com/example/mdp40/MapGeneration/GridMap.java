@@ -397,17 +397,17 @@ public class GridMap extends View{
         }
         //turn back left
         else if (game.getGripMap()[0][0] == 10) {
+            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1);
             if (faceDirection == 360){
                 faceDirection = 0;
             }
-            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1);
         }
         //turn back right
         else if (game.getGripMap()[0][0] == 11) {
-            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1);
             if (faceDirection == 0){
                 faceDirection = 360;
             }
+            rotateBackRobot(canvas, resizedRobot, robotleftImage, robottopImage, -1);
         }
     }
 
