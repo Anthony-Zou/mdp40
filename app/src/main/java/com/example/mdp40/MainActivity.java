@@ -198,6 +198,21 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                         }
                     }
                 }
+                else if(json.getString("mode").equals("updateId_coord")) {
+                    onReceivedMsgChanged(json.getInt("x"), json.getInt("y"),
+                            String.valueOf(json.getInt("newId")), "updateId_coord");
+                    int x = json.getInt("x");
+                    int y = json.getInt("y");
+                    int newId = json.getInt("newId");
+                    GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
+                    for (int i = 0; i < gridMap.obsLocation[0].length; i++) {
+                        if (gridMap.obsLocation[0][i] == x && gridMap.obsLocation[1][i] == y)  {
+                            gridMap.obsLocation[3][i] = newId;
+                            gridMap.obsLocation[4][i] = 18;
+                            gridMap.invalidate();
+                        }
+                    }
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -295,11 +310,19 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             receivedText.remove("newId");
             receivedText.remove("oldId");
         }
-        else{
+        else if (mode.equals("updateId")){
             receivedText.put("oldId", String.valueOf(x));
             receivedText.put("newId", String.valueOf(y));
             receivedText.remove("x");
             receivedText.remove("y");
+            receivedText.remove("action");
+            receivedText.remove("direction");
+        }
+        else {
+            receivedText.put("x", String.valueOf(x));
+            receivedText.put("y", String.valueOf(y));
+            receivedText.put("newId", direction);
+            receivedText.remove("oldId");
             receivedText.remove("action");
             receivedText.remove("direction");
         }
