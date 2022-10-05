@@ -13,8 +13,8 @@ public interface Constants {
     String TOAST = "toast";
 
     // Android to Algo
-    String AlgActionSetObs = "ALG | set_obstacles:";
-    String AlgActionPlan_path ="ALG | plan_path";
+    String AlgActionSetObs = "ALG | set_obstacles |";
+    String AlgActionPlan_path ="ALG | send_path";
     String AlgActionDisconnect = "ALG | disconnect";
 
     // Android to STM
@@ -25,5 +25,7 @@ public interface Constants {
     String StmActionS = "STM | S";
     String StmActionD = "STM | D000";
     // Android message types
+
+
 
 }
