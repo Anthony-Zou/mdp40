@@ -20,9 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.example.mdp40.MainActivity;
 import com.example.mdp40.R;
-import com.example.mdp40.bluetooth40.BluetoothService;
 import com.example.mdp40.fragments.mapPanelFragment;
 
 import java.util.ArrayList;
@@ -102,6 +100,7 @@ public class GridMap extends View{
         setMeasuredDimension(580, 580);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onDraw(Canvas canvas){
         paint.setStyle(Paint.Style.FILL);
@@ -140,6 +139,7 @@ public class GridMap extends View{
         else {
             clearAll();
         }
+        //invalidate();
     }
 
     public void clearAll() {
@@ -295,6 +295,7 @@ public class GridMap extends View{
         canvas.drawRect(0, 0, 580, 580, paint);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void drawObstacles(Canvas canvas) {
         //System.out.println("grid map: " + game.getGripMap()[0][0]);
         if (game.getGripMap()[0][0] > 0) {
@@ -380,6 +381,7 @@ public class GridMap extends View{
         //move forward
         else if (game.getGripMap()[0][0] == 3) {
             moveRobot(canvas, resizedRobot, robotleftImage, robottopImage, 1);
+
         }
         //move backward
         else if (game.getGripMap()[0][0] == 4) {
