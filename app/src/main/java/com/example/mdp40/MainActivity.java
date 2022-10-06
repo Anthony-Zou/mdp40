@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.mdp40.MapGeneration.GameLogic;
 import com.example.mdp40.MapGeneration.GridMap;
 import com.example.mdp40.bluetooth40.BluetoothDeviceActivity;
 import com.example.mdp40.bluetooth40.BluetoothListener;
@@ -211,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                             gridMap.obsLocation[3][i] = newId;
                             gridMap.obsLocation[4][i] = 18;
                             gridMap.invalidate();
+                            break;
                         }
                     }
                 }
