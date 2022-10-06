@@ -289,6 +289,10 @@ public class GridMap extends View{
         for(r = 1; r < 20; r++){
             canvas.drawLine(0, cellSize*r, canvas.getWidth(), cellSize*r, paint);
         }
+
+        Rect rect = new Rect();
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(0, 0, 580, 580, paint);
     }
 
     private void drawObstacles(Canvas canvas) {
