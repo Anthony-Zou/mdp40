@@ -208,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                         if (gridMap.obsLocation[0][i] == convX && gridMap.obsLocation[1][i] == convY)  {
                             gridMap.obsLocation[3][i] = newId;
                             gridMap.obsLocation[4][i] = 18;
+                            gridMap.genRobot();
                             gridMap.invalidate();
                             break;
                         }

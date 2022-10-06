@@ -376,7 +376,7 @@ public class GridMap extends View{
         resizedRobot = getResizedBitmap(robotBitmap, 3);
         //place robot on the grid map
         if (game.getGripMap()[0][0] == 2) {
-            rotateBitmap(canvas, resizedRobot, robotleftImage, robottopImage, robotAngle);
+            rotateBitmap(canvas, resizedRobot, robotleftImage, robottopImage, faceDirection);
         }
         //move forward
         else if (game.getGripMap()[0][0] == 3) {
