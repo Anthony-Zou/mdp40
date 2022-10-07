@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.mdp40.MapGeneration.GameLogic;
 import com.example.mdp40.MapGeneration.GridMap;
 import com.example.mdp40.bluetooth40.BluetoothDeviceActivity;
 import com.example.mdp40.bluetooth40.BluetoothListener;
@@ -212,9 +210,10 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                         if (gridMap.obsLocation[0][i] == convX && gridMap.obsLocation[1][i] == convY)  {
                             gridMap.obsLocation[3][i] = newId;
                             gridMap.obsLocation[4][i] = 18;
-                            //set the matrix in GameLogic to 2
+
                             gridMap.genRobot();
                             gridMap.invalidate();
+                            break;
                         }
                     }
                 }
