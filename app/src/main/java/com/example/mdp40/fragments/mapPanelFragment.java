@@ -2,6 +2,7 @@ package com.example.mdp40.fragments;
 
 import static com.example.mdp40.Constants.AlgActionDisconnect;
 import static com.example.mdp40.Constants.AlgActionPlan_path;
+import static com.example.mdp40.Constants.AlgActionPlan_path2;
 import static com.example.mdp40.Constants.AlgActionSetObs;
 import static com.example.mdp40.Constants.StmActionA;
 import static com.example.mdp40.Constants.StmActionD;
@@ -218,6 +219,7 @@ public class mapPanelFragment extends Fragment {
         //gridmap & algo buttons
         GridMap gridMap = (GridMap)view.findViewById(R.id.gridMap);
         Button planPathBtn = (Button)view.findViewById(R.id.planPath);
+        Button planPathBtn2 = (Button)view.findViewById(R.id.planPath2);
         Button disconnectAlgoBtn = (Button)view.findViewById(R.id.disconnect);
 
         //Click to generate obstacles
@@ -364,6 +366,13 @@ public class mapPanelFragment extends Fragment {
                 AlgActionPlan_path();
             }
         });
+        //Click to send message algo and plan the shortest path
+        planPathBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlgActionPlan_path2();
+            }
+        });
 
         //Click to disconnect algo
         disconnectAlgoBtn.setOnClickListener(new View.OnClickListener() {
@@ -477,6 +486,9 @@ public class mapPanelFragment extends Fragment {
 
     public void AlgActionPlan_path(){
         sendBTMessage(bluetoothService,AlgActionPlan_path);
+    }
+    public void AlgActionPlan_path2(){
+        sendBTMessage(bluetoothService,AlgActionPlan_path2);
     }
     public void AlgActionDisconnect(){
         sendBTMessage(bluetoothService,AlgActionDisconnect);
