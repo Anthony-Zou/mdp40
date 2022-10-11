@@ -487,8 +487,9 @@ public class mapPanelFragment extends Fragment {
     public void AlgActionPlan_path(){
         sendBTMessage(bluetoothService,AlgActionPlan_path);
     }
+
     public void AlgActionPlan_path2(){
-        sendBTMessage(bluetoothService,AlgActionPlan_path2);
+        bluetoothService.write(AlgActionPlan_path2.getBytes());
     }
     public void AlgActionDisconnect(){
         sendBTMessage(bluetoothService,AlgActionDisconnect);
