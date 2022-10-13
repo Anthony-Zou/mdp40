@@ -15,6 +15,7 @@ public interface Constants {
     // Android to Algo
     String AlgActionSetObs = "ALG | set_obstacles |";
     String AlgActionPlan_path ="ALG | send_path";
+    String AlgActionPlan_path2 ="START_FASTEST_CAR";
     String AlgActionDisconnect = "ALG | disconnect";
 
     // Android to STM
