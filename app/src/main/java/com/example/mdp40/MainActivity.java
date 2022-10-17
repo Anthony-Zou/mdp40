@@ -180,9 +180,10 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                     }
                 }
                 //update obstacle id
-                else if(json.getString("mode").equals("updateId")) {
-                    onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"),
-                            json.getString("mode"), "updateId");
+                else if(json.getString("mode").equals("welcome")) {
+                    rightPanelFragment.getMsgReceived().setText("Rover Curiosity activated. Welcome.");
+                    /*onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"),
+                            json.getString("mode"), "welcome");
                     String oldId = json.getString("oldId");
                     String newId = json.getString("newId");
                     for (int i = 0; i < gridMap.obsLocation[3].length; i++) {
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                             gridMap.genRobot();
                             gridMap.invalidate();
                         }
-                    }
+                    }*/
                 }
                 else if(json.getString("mode").equals("updateId_coord")) {
                     onReceivedMsgChanged(json.getInt("x"), json.getInt("y"),
@@ -328,12 +329,13 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             receivedText.remove("direction");
         }
         else {
-            receivedText.put("x", String.valueOf(x));
+            /*receivedText.put("x", String.valueOf(x));
             receivedText.put("y", String.valueOf(y));
             receivedText.put("newId", direction);
             receivedText.remove("oldId");
             receivedText.remove("action");
-            receivedText.remove("direction");
+            receivedText.remove("direction");*/
+            receivedText.put("Activated", "Rover Curiosity is now ready");
         }
         textHistory.add(receivedText.toString());
         textCount+=1;

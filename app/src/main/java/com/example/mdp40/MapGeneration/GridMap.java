@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -386,8 +387,9 @@ public class GridMap extends View{
     public void addNumber(Canvas canvas, String number, float leftCoord, float topCoord, int size) {
         obstacle.getObsIdentity();
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(size);
+        paint.setColor(Color.YELLOW);
+        paint.setTextSize(17);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         canvas.drawText(number, leftCoord, topCoord, paint);
     }
 
