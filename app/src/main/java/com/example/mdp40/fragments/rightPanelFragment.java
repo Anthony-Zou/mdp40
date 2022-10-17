@@ -44,6 +44,8 @@ public class rightPanelFragment extends Fragment {
         btnConnect = view.findViewById(R.id.btnConnect);
         msgReceived = view.findViewById(R.id.msgReceived);
 
+        btnConnect.setBackgroundResource(R.drawable.disconnected);
+        msgReceived.setBackgroundResource(R.drawable.received_bg);
     }
     public void setBluetoothService(BluetoothService bluetoothService) {
         this.bluetoothService = bluetoothService;

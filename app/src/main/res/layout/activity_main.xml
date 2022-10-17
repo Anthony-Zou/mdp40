@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -20,11 +21,12 @@
 
         <LinearLayout
             android:id="@+id/grid_center"
-            android:layout_width="31dp"
+            android:layout_width="394dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_weight="0.55"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:translationX="-10dp">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentMapPanel"
@@ -46,7 +48,7 @@
                 android:id="@+id/fragmentRightPanel"
                 android:name="com.example.mdp40.fragments.rightPanelFragment"
                 android:layout_width="match_parent"
-                android:layout_height="269dp" />
+                android:layout_height="match_parent" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentConsolePanel"

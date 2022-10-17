@@ -5,6 +5,7 @@
     android:id="@+id/SwOnOff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     tools:context=".bluetooth40.BluetoothDeviceActivity">
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        android:translationX="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,25 +26,31 @@
 
             <Button
                 android:id="@+id/btnScan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="190dp"
+                android:layout_height="37dp"
                 android:layout_marginStart="20dp"
                 android:paddingRight="20dp"
-                android:text="Scan" />
+                android:text="    Scan"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
             <Button
                 android:id="@+id/btnOnOff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="190dp"
+                android:layout_height="37dp"
                 android:layout_marginLeft="20dp"
-                android:text="On/OFF Bluetooth" />
+                android:text="On/OFF Bluetooth"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
             <Button
                 android:id="@+id/btnDiscover"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="190dp"
+                android:layout_height="37dp"
                 android:layout_marginLeft="20dp"
-                android:text="ON Discoverablity" />
+                android:text="ON Discoverablity"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
@@ -51,12 +59,17 @@
             android:layout_height="24dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
-            android:text="Paired Devices:" />
+            android:text="Paired Devices"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold|italic"
+            android:translationX="-30dp"
+            android:translationY="5dp" />
 
         <ListView
             android:id="@+id/lv_devices"
             android:layout_width="fill_parent"
-            android:layout_height="165dp">
+            android:layout_height="170dp">
 
         </ListView>
 
@@ -66,14 +79,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="10dp"
-            android:text="Scan Devices:" />
+            android:text="Scan Devices"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold|italic"
+            android:translationX="-35dp"
+            android:translationY="5dp" />
 
         <ListView
             android:id="@+id/lvScan"
             android:layout_width="fill_parent"
-            android:layout_height="165dp"
+            android:layout_height="170dp"
             android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll" />
+            android:transcriptMode="alwaysScroll"
+            android:translationY="10dp" />
 
     </LinearLayout>
 

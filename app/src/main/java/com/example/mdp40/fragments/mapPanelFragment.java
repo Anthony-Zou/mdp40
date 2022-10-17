@@ -12,6 +12,8 @@ import static com.example.mdp40.Constants.StmActionS;
 import static com.example.mdp40.Constants.StmActionW;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -132,6 +134,7 @@ public class mapPanelFragment extends Fragment {
         console = new consoleFragment();
 
         ///
+        Bitmap buttonBg = BitmapFactory.decodeResource(getResources(), R.drawable.button_bg);
 
 
         consoleArrayAdapter = new ArrayAdapter<>(getContext(),R.layout.item_message);
@@ -146,6 +149,14 @@ public class mapPanelFragment extends Fragment {
         Button changeIdBtn = (Button)view.findViewById(R.id.changeId);
         Button updateObsBtn = (Button)view.findViewById(R.id.updateObs);
 
+        //set button background image
+        genMapbtn.setBackgroundResource(R.drawable.button_bg);
+        moveObsBtn.setBackgroundResource(R.drawable.button_bg);
+        addObsBtn.setBackgroundResource(R.drawable.button_bg);
+        changeIdBtn.setBackgroundResource(R.drawable.button_bg);
+        changeIdBtn.setVisibility(View.INVISIBLE);
+        updateObsBtn.setBackgroundResource(R.drawable.button_bg);
+
         //obstacle number picker
         NumberPicker obsId = (NumberPicker)view.findViewById(R.id.numberPicker);
         currentId1 = gridMap.obsLocation[3];
@@ -153,7 +164,6 @@ public class mapPanelFragment extends Fragment {
                 .mapToObj(String::valueOf)
                 .toArray(String[]::new);
 
-        System.out.println("currentId: "+Arrays.toString(currentId));
         allId = obstacle.obsIdentity[0];
         avaiId = new String[allId.length-currentId.length];
         //bluetoothService.write(data.getBytes());
@@ -169,7 +179,6 @@ public class mapPanelFragment extends Fragment {
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                 if (changeId) {
                     boolean idUsed = true;
-                    System.out.println("avaiId now: "+Arrays.toString(avaiId));
                     for (int j=0; j<avaiId.length; j++) {
                         if (allId[i1].equals(avaiId[j])) {
                             idUsed = false;
@@ -177,15 +186,12 @@ public class mapPanelFragment extends Fragment {
                     }
                     if (!idUsed){
                         //remove new id from avaiId, add back the old id
-                        System.out.println("avaiId old: "+Arrays.toString(avaiId));
                         for (int k=0; k<avaiId.length; k++){
                             if (avaiId[k].equals(allId[i1])){
-                                System.out.println("prev id: "+gridMap.obsLocation[3][currentObs]);
                                 avaiId[k] = String.valueOf(gridMap.obsLocation[3][currentObs]);
                             }
                         }
                         gridMap.obsLocation[3][currentObs] = Integer.valueOf(allId[i1]);
-                        System.out.println("avaiId new: "+Arrays.toString(avaiId));
                         gridMap.obsLocation[4][currentObs] = 18;
                     }
                     else{
@@ -200,12 +206,14 @@ public class mapPanelFragment extends Fragment {
 
         //robot buttons
         genRobotBtn = (Button)view.findViewById(R.id.genRobot);
-        ImageView forwardView = (ImageView)view.findViewById(R.id.forwardView);
-        ImageView backwardView = (ImageView)view.findViewById(R.id.backwardView);
-        ImageView turnLView = (ImageView)view.findViewById(R.id.turnLView);
-        ImageView turnRView = (ImageView)view.findViewById(R.id.turnRView);
-        ImageView turnBLView = (ImageView)view.findViewById(R.id.turnBLView);
-        ImageView turnBRView = (ImageView)view.findViewById(R.id.turnBRView);
+        genRobotBtn.setBackgroundResource(R.drawable.button_bg);
+
+        ImageView forwardView = (ImageView)view.findViewById(R.id.rover_F);
+        ImageView backwardView = (ImageView)view.findViewById(R.id.rover_B);
+        ImageView turnLView = (ImageView)view.findViewById(R.id.rover_LF);
+        ImageView turnRView = (ImageView)view.findViewById(R.id.rover_RF);
+        ImageView turnBLView = (ImageView)view.findViewById(R.id.rover_LB);
+        ImageView turnBRView = (ImageView)view.findViewById(R.id.rover_RB);
 
         //robot coordinates
         TextView robotLeftImage = (TextView) view.findViewById(R.id.robotLeftImage);
@@ -215,6 +223,7 @@ public class mapPanelFragment extends Fragment {
 
         //clear button
         Button clearBtn = (Button)view.findViewById(R.id.clearCanvas);
+        clearBtn.setBackgroundResource(R.drawable.button_bg);
 
         //gridmap & algo buttons
         GridMap gridMap = (GridMap)view.findViewById(R.id.gridMap);
@@ -222,12 +231,14 @@ public class mapPanelFragment extends Fragment {
         Button planPathBtn2 = (Button)view.findViewById(R.id.planPath2);
         Button disconnectAlgoBtn = (Button)view.findViewById(R.id.disconnect);
 
+        planPathBtn.setBackgroundResource(R.drawable.button_bg);
+        planPathBtn2.setBackgroundResource(R.drawable.button_bg);
+        disconnectAlgoBtn.setBackgroundResource(R.drawable.button_bg);
+
         //Click to generate obstacles
         genMapbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Obstacles generated",
-                        Toast.LENGTH_LONG).show();
                 gridMap.genObstacles();
                 gridMap.invalidate();
             }
@@ -247,17 +258,9 @@ public class mapPanelFragment extends Fragment {
         genRobotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Robot generated",
-                        Toast.LENGTH_LONG).show();
                 robotStatus.setText("Ready to Start");
                 gridMap.genRobot();
                 gridMap.invalidate();
-
-
-
-
-
-
             }
         });
 
@@ -265,8 +268,8 @@ public class mapPanelFragment extends Fragment {
         moveObsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Moving obstacles...",
-                        Toast.LENGTH_LONG).show();
+/*                Toast.makeText(getContext(), "Moving obstacles...",
+                        Toast.LENGTH_LONG).show();*/
                 gridMap.moveObstacles();
                 gridMap.invalidate();
             }

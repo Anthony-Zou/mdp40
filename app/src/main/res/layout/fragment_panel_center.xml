@@ -6,6 +6,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     tools:context=".fragments.mapPanelFragment">
 
 
@@ -13,237 +14,256 @@
         android:id="@+id/numberPicker"
         android:layout_width="44dp"
         android:layout_height="43dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <Button
         android:id="@+id/changeId"
         android:layout_width="109dp"
         android:layout_height="43dp"
         android:text="Change id"
+        android:textColor="@color/white"
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <Button
         android:id="@+id/genRobot"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
         android:text="Generate Robot"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintVertical_bias="0.342" />
 
     <Button
         android:id="@+id/disconnect"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
         android:text="Disconnect to algo"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.956" />
 
     <Button
         android:id="@+id/genMap"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
         android:text="Generate Obstacles"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <Button
         android:id="@+id/addObs"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
         android:text="Add obstacles"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <Button
         android:id="@+id/moveObs"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
         android:text="Move Obstacles"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <Button
         android:id="@+id/planPath"
-        android:layout_width="49dp"
-        android:layout_height="39dp"
-        android:text="P1"
-        android:textSize="10sp"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
+        android:text="Maze path finder"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        android:translationY="-1.1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <TextView
         android:id="@+id/robotStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Robot status"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold|italic"
+        android:translationY="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintHorizontal_bias="0.678"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.006" />
 
     <TextView
-        android:id="@+id/robotRightImage"
+        android:id="@+id/robotY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="15sp"
+        android:text="Position-Y:"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        android:translationX="25dp"
+        android:translationY="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/robotY"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/robotLeftImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        android:translationX="-110dp"
+        android:translationY="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/robotX"
+        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/robotX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X:"
-        android:textSize="15sp"
+        android:text="Position-X: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        android:translationX="25dp"
+        android:translationY="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/robotY"
+        android:id="@+id/robotRightImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Y:"
-        android:textSize="15sp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        android:translationX="-20dp"
+        android:translationY="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
-
-    <Button
-        android:id="@+id/clearCanvas"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
-        android:text="Clear canvas"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/updateObs"
-        android:layout_width="109dp"
-        android:layout_height="43dp"
-        android:text="Update Obstacles"
-        android:textSize="10sp"
+        android:id="@+id/clearCanvas"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
+        android:text="Clear canvas"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.956" />
+
+    <Button
+        android:id="@+id/updateObs"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
+        android:text="Update Obstacles"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192" />
 
     <ImageView
         android:id="@+id/forwardView"
         android:layout_width="36dp"
         android:layout_height="32dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719"
+        app:layout_constraintVertical_bias="0.084"
         custom:srcCompat="@drawable/forward" />
-
-    <ImageView
-        android:id="@+id/turnRView"
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:rotation="-33"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toEndOf="@+id/forwardView"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.298"
-        custom:srcCompat="@drawable/turnright" />
 
     <ImageView
         android:id="@+id/turnLView"
         android:layout_width="36dp"
         android:layout_height="32dp"
         android:rotation="33"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.298"
+        app:layout_constraintVertical_bias="0.075"
         custom:srcCompat="@drawable/turnleft" />
 
     <ImageView
@@ -251,24 +271,26 @@
         android:layout_width="36dp"
         android:layout_height="32dp"
         android:rotation="-33"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
+        app:layout_constraintVertical_bias="0.258"
         custom:srcCompat="@drawable/turnleft" />
 
     <ImageView
         android:id="@+id/backwardView"
         android:layout_width="36dp"
         android:layout_height="32dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.945"
+        app:layout_constraintVertical_bias="0.149"
         custom:srcCompat="@drawable/backward" />
 
     <ImageView
@@ -276,12 +298,27 @@
         android:layout_width="36dp"
         android:layout_height="32dp"
         android:rotation="33"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toEndOf="@+id/forwardView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
+        app:layout_constraintVertical_bias="0.235"
+        custom:srcCompat="@drawable/turnright" />
+
+    <ImageView
+        android:id="@+id/turnRView"
+        android:layout_width="36dp"
+        android:layout_height="32dp"
+        android:rotation="-33"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/forwardView"
+        app:layout_constraintTop_toTopOf="@+id/forwardView"
+        app:layout_constraintVertical_bias="0.075"
         custom:srcCompat="@drawable/turnright" />
 
 
@@ -289,6 +326,7 @@
         android:id="@+id/gridMap"
         android:layout_width="321dp"
         android:layout_height="315dp"
+        android:translationX="-15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
@@ -296,47 +334,137 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.135"
         custom:XColour="#3F51B5"
-        custom:mapColour="#A5A2A2"></com.example.mdp40.MapGeneration.GridMap>
+        custom:mapColour="#B3FAF7"></com.example.mdp40.MapGeneration.GridMap>
 
     <TextView
-        android:id="@+id/x_axis"
+        android:id="@+id/y_axis"
         android:layout_width="551dp"
         android:layout_height="22dp"
-        android:text="1     2     3     4     5    6     7     8     9    10  11  12  13  14   15  16  17  18   19  20"
-        android:textColor="@color/black"
+        android:rotation="-90"
+        android:text="1     2     3     4     5     6     7     8     9   10   11   12  13   14   15  16   17   18   19   20"
+        android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.242"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="75dp"
-        android:layout_height="442dp"
-        android:src="@drawable/y_axis"
-        android:translationX="-35sp"
-        android:translationY="1sp"
+        android:textStyle="bold|italic"
+        android:translationX="-260dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.325" />
+
+    <TextView
+        android:id="@+id/x_axis2"
+        android:layout_width="551dp"
+        android:layout_height="22dp"
+        android:text="1     2     3     4     5     6     7     8     9   10   11   12  13   14   15  16   17   18   19   20"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold|italic"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.147"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/planPath2"
-        android:layout_width="54dp"
-        android:layout_height="39dp"
-        android:text="P2"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
+        android:text="Shortest path finder"
+        android:textColor="@color/white"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.461" />
+
+    <ImageView
+        android:id="@+id/rover_F"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/f_rover"
+        android:translationX="5dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
+
+    <ImageView
+        android:id="@+id/rover_LB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/lb_rover"
+        android:translationX="5dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rover_F"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/rover_RF"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/rf_rover"
+        android:translationX="5dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rover_F"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815" />
+
+    <ImageView
+        android:id="@+id/rover_LF"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/lf_rover"
+        android:translationX="5dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rover_F"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815" />
+
+    <ImageView
+        android:id="@+id/rover_RB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/rb_rover"
+        android:translationX="5dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rover_F"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
+
+    <ImageView
+        android:id="@+id/rover_B"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/b_rover"
+        android:translationX="7dp"
+        android:translationY="-70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rover_F"
+        app:layout_constraintVertical_bias="1.0" />
 
     <!-- TODO: Update blank fragment layout -->
     <!--    <TextView-->

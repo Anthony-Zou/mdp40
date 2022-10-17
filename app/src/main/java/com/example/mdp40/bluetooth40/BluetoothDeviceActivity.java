@@ -41,6 +41,7 @@ public class BluetoothDeviceActivity extends AppCompatActivity implements Adapte
     public ArrayList<BluetoothDevice> list1 = new ArrayList<>();
     public ArrayList<BluetoothDevice> list2 = new ArrayList<>();
     ListView lvScan;
+    ListView lvDevice;
     BluetoothAdapter bluetoothAdapter;
     boolean m1 = false, m3 = false;
 
@@ -51,9 +52,16 @@ public class BluetoothDeviceActivity extends AppCompatActivity implements Adapte
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         lvScan = findViewById(R.id.lvScan);
+        lvDevice = findViewById(R.id.lv_devices);
         Button btnOnOff = findViewById(R.id.btnOnOff);
         Button btnDiscover = findViewById(R.id.btnDiscover);
         Button btnScan = findViewById(R.id.btnScan);
+
+        lvScan.setBackgroundResource(R.drawable.bt_device_bg);
+        lvDevice.setBackgroundResource(R.drawable.bt_device_bg);
+        btnOnOff.setBackgroundResource(R.drawable.button_bg);
+        btnDiscover.setBackgroundResource(R.drawable.button_bg);
+        btnScan.setBackgroundResource(R.drawable.button_bg);
 
         btnOnOff.setOnClickListener(view -> toggleBT());
 

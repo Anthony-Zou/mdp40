@@ -160,8 +160,10 @@ public class GameLogic {
 
     //grid map
     public void displayLoc (int robotLeft, int robotTop){
-       robotX.setText(String.valueOf(robotLeft));
-       robotY.setText(String.valueOf(robotTop));
+        int convX = robotLeft+1;
+        int convY = 18 - robotTop;
+        robotX.setText(String.valueOf(convX));
+        robotY.setText(String.valueOf(convY));
     }
 
     public void updateRobotPos(int robotLeft, int robotTop){

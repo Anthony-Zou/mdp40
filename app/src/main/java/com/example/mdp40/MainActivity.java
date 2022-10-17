@@ -265,14 +265,19 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
     // adopted from BluetoothListener interface, used in BluetoothService class
     public void onBluetoothStatusChange(int status) {
         ArrayList<String> text = new ArrayList<>(Arrays.asList("Not Connected", "", "Connecting", "Connected"));
-        ArrayList<String> col = new ArrayList<>(Arrays.asList("#FFFF0000", "", "#FFFFFF00", "#FF00FF00"));
+        //ArrayList<String> col = new ArrayList<>(Arrays.asList("#FFFF0000", "", "#FFFFFF00", "#FF00FF00"));
+        ArrayList<String> col = new ArrayList<>(Arrays.asList("#FFFF0000", "", "#FFFFFF00", "#FF000000"));
 
         runOnUiThread(() -> {
             rightPanelFragment.getBtnConnect().setText(text.get(status));
             if (rightPanelFragment.getBtnConnect().getText().equals("Connected")){
                 runOnUiThread(() -> {
                     mapPanelFragment.getRobotStatus().setText("Ready to start");
+                    rightPanelFragment.getBtnConnect().setBackgroundResource(R.drawable.connected);
                 });
+            }
+            else{
+                rightPanelFragment.getBtnConnect().setBackgroundResource(R.drawable.disconnected);
             }
             rightPanelFragment.getBtnConnect().setTextColor(Color.parseColor(col.get(status)));
 

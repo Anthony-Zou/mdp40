@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -16,18 +17,23 @@
 
         <Button
             android:id="@+id/btnConnect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="37dp"
             android:onClick="onBtnConnectClick"
-            android:text="@string/connect"
-            android:textColor="@color/btn_connect_red" />
+            android:text="             Disconnected"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold|italic"
+            android:translationY="10dp" />
 
         <TextView
             android:id="@+id/msgReceived"
-            android:layout_width="401dp"
-            android:layout_height="378dp"
-            android:text="Received Text"
-            android:translationX="20sp"
+            android:layout_width="140dp"
+            android:layout_height="380dp"
+            android:text=" Message Received"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            android:textStyle="bold|italic"
             android:translationY="30sp" />
 
 
