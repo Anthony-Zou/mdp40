@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg"
@@ -142,7 +141,6 @@
         app:layout_constraintVertical_bias="0.006" />
 
     <TextView
-        android:id="@+id/robotY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Position-Y:"
@@ -176,7 +174,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/robotX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Position-X: "
@@ -267,7 +264,6 @@
         custom:srcCompat="@drawable/turnleft" />
 
     <ImageView
-        android:id="@+id/turnBLView"
         android:layout_width="36dp"
         android:layout_height="32dp"
         android:rotation="-33"
@@ -294,7 +290,6 @@
         custom:srcCompat="@drawable/backward" />
 
     <ImageView
-        android:id="@+id/turnBRView"
         android:layout_width="36dp"
         android:layout_height="32dp"
         android:rotation="33"
@@ -337,7 +332,6 @@
         custom:mapColour="#B3FAF7"></com.example.mdp40.MapGeneration.GridMap>
 
     <TextView
-        android:id="@+id/y_axis"
         android:layout_width="551dp"
         android:layout_height="22dp"
         android:rotation="-90"
@@ -354,7 +348,6 @@
         app:layout_constraintVertical_bias="0.325" />
 
     <TextView
-        android:id="@+id/x_axis2"
         android:layout_width="551dp"
         android:layout_height="22dp"
         android:text="1     2     3     4     5     6     7     8     9   10   11   12  13   14   15  16   17   18   19   20"

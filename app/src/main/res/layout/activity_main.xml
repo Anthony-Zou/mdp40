@@ -20,7 +20,6 @@
 
 
         <LinearLayout
-            android:id="@+id/grid_center"
             android:layout_width="394dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -37,7 +36,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/control_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"

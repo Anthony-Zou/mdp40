@@ -22,8 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mdp40">
 
-        <activity android:name=".BlueTooth.BlueTooth" />
-        <activity android:name=".BlueTooth.BTImage" />
         <activity android:name=".MapGeneration.MapInit" />
 
         <activity
