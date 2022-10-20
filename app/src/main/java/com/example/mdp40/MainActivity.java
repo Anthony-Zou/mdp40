@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         fragmentConsole = (consoleFragment) fragmentManager.findFragmentById(R.id.fragmentConsolePanel);
         rightPanelFragment = (rightPanelFragment) fragmentManager.findFragmentById(R.id.fragmentRightPanel);
         mapPanelFragment = (mapPanelFragment) fragmentManager.findFragmentById(R.id.fragmentMapPanel);
-        LinearLayout layout = findViewById(R.id.main_layout);
+        //LinearLayout layout = findViewById(R.id.main_layout);
     }
 
     private void initBluetooth() {
@@ -120,32 +120,14 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             GridMap gridMap = (GridMap) findViewById(R.id.gridMap);
 
             try {
-//                '{"mode":"updateRobot", "x":value, "y":value, "direction":"value"}'
-//
-//                '{"mode":"moveRobot", "action":"value"}'
-//
-//                '{"mode":"updateId", "oldId":value, "newId":value}'
                 JSONObject json = new JSONObject(strMessage);
-                if(json.getString("mode").equals("updateRobot")) {
-                    /*System.out.println("btMsgHandler if");
-                    System.out.println("strMessage: " + json.getInt("x") + " " + json.getInt("y")
-                            + " " + json.getString("direction"));*/
-                    onReceivedMsgChanged(json.getInt("x"), json.getInt("y"), json.getString("direction"),
-                                  "updateRobot");
-                    // rpiMessageHandler(json);
-                    GridMap.robotleftImage = json.getInt("x");
-                    GridMap.robottopImage = json.getInt("y");
-                    System.out.println("y: " + json.getInt("y"));
-                    if (json.getString("direction").equals("N")) {
-                        GridMap.robotAngle = 270;
-                    } else if (json.getString("direction").equals("W")) {
-                        GridMap.robotAngle = 180;
-                    } else if (json.getString("direction").equals("S")) {
-                        GridMap.robotAngle = 90;
-                    } else {
-                        GridMap.robotAngle = 0;
-                    }
+
+                // show welcome message
+                if(json.getString("mode").equals("welcome")) {
+                    rightPanelFragment.getMsgReceived().setText("Rover Curiosity activated. Welcome.");
                 }
+
+                // update robot position using wasd commands
                 else if(json.getString("mode").equals("moveRobot")) {
                     onReceivedMsgChanged(0, 0, json.getString("action"), "moveRobot");
                     String action =json.getString("action");
@@ -179,29 +161,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
 
                     }
                 }
-                //update obstacle id
-                else if(json.getString("mode").equals("welcome")) {
-                    rightPanelFragment.getMsgReceived().setText("Rover Curiosity activated. Welcome.");
-                    /*onReceivedMsgChanged(json.getInt("oldId"), json.getInt("newId"),
-                            json.getString("mode"), "welcome");
-                    String oldId = json.getString("oldId");
-                    String newId = json.getString("newId");
-                    for (int i = 0; i < gridMap.obsLocation[3].length; i++) {
-                       // Toast(String.valueOf(gridMap.obsLocation[3][i]));
-                        if (String.valueOf(gridMap.obsLocation[3][i]).equals(oldId)) {
-                          //  Toast("old obstacle found");
-                            gridMap.obsLocation[3][i] = Integer.parseInt(newId);
-                            //Toast("new int passed in");
-                            gridMap.obsLocation[4][i] = 18;
-                            //set the matrix in GameLogic to 2
-                            gridMap.genRobot();
-                            gridMap.invalidate();
-                        }
-                    }*/
-                }
-                else if(json.getString("mode").equals("updateId_coord")) {
+
+                // update obstacle id using obstacle(x,y) and new id
+                else if(json.getString("mode").equals("updateId")) {
                     onReceivedMsgChanged(json.getInt("x"), json.getInt("y"),
-                            String.valueOf(json.getInt("newId")), "updateId_coord");
+                            String.valueOf(json.getInt("newId")), "updateId");
                     int x = json.getInt("x");
                     int y = json.getInt("y");
                     int newId = json.getInt("newId");
@@ -224,8 +188,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
         }
         return false;
     });
-
-
 
 
     // handles the runnable for reconnecting to bluetooth device
@@ -257,16 +219,26 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
                 .show();
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         bluetoothService.stop();
     }
 
+
+    public void onBtnConnectClick(View view) {
+        if (rightPanelFragment.btEnabled) {
+            Intent intent = new Intent(MainActivity.this, BluetoothDeviceActivity.class);
+            bluetoothService.start();
+            activityResultLauncher.launch(intent);
+        }
+    }
+
+
     // adopted from BluetoothListener interface, used in BluetoothService class
     public void onBluetoothStatusChange(int status) {
         ArrayList<String> text = new ArrayList<>(Arrays.asList("Not Connected", "", "Connecting", "Connected"));
-        //ArrayList<String> col = new ArrayList<>(Arrays.asList("#FFFF0000", "", "#FFFFFF00", "#FF00FF00"));
         ArrayList<String> col = new ArrayList<>(Arrays.asList("#FFFF0000", "", "#FFFFFF00", "#FF000000"));
 
         runOnUiThread(() -> {
@@ -285,34 +257,14 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             if (bluetoothService.state == BluetoothService.STATE_NONE) {
                 promptReconnect();
                 Toast.makeText(MainActivity.this, "BT state =  "+bluetoothService.state, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
 
-    public void onBtnConnectClick(View view) {
-        if (rightPanelFragment.btEnabled) {
-            Intent intent = new Intent(MainActivity.this, BluetoothDeviceActivity.class);
-            bluetoothService.start();
-            activityResultLauncher.launch(intent);
-        }
-    }
-//    public void onMapClicked(View view) {
-//     startActivity(new Intent(MainActivity.this, MapInit.class));
-//    }
 
     public void onReceivedMsgChanged(int x, int y, String direction, String mode) {
         System.out.println("check mode: "+mode);
-        if (mode.equals("updateRobot")) {
-            receivedText.put("x", String.valueOf(x));
-            receivedText.put("y", String.valueOf(y));
-            receivedText.put("direction", direction);
-            receivedText.remove("newId");
-            receivedText.remove("oldId");
-            receivedText.remove("action");
-            mapPanelFragment.getBtnClicked().performClick();
-        }
-        else if (mode.equals("moveRobot")) {
+        if (mode.equals("moveRobot")) {
             receivedText.put("action", direction);
             receivedText.remove("x");
             receivedText.remove("y");
@@ -321,41 +273,32 @@ public class MainActivity extends AppCompatActivity implements BluetoothListener
             receivedText.remove("oldId");
         }
         else if (mode.equals("updateId")){
-            receivedText.put("oldId", String.valueOf(x));
-            receivedText.put("newId", String.valueOf(y));
-            receivedText.remove("x");
-            receivedText.remove("y");
-            receivedText.remove("action");
-            receivedText.remove("direction");
-        }
-        else {
-            /*receivedText.put("x", String.valueOf(x));
+            receivedText.put("x", String.valueOf(x));
             receivedText.put("y", String.valueOf(y));
             receivedText.put("newId", direction);
             receivedText.remove("oldId");
             receivedText.remove("action");
-            receivedText.remove("direction");*/
-            receivedText.put("Activated", "Rover Curiosity is now ready");
+            receivedText.remove("direction");
         }
+
+        // add current text to array list
         textHistory.add(receivedText.toString());
         textCount+=1;
+
+        // only displays latest 10 lines of commands
         if (textCount>10){
             textHistory.remove(0);
         }
-        System.out.println("receivedText: " + String.valueOf(receivedText));
-        //convert all lines into a single line
+
+        // convert all lines into a single line and make every command start with a new line
         StringBuilder builder = new StringBuilder();
         for (String details : textHistory) {
             builder.append(details + "\n");
         }
 
+        // update ui to display text in right panel fragment
         runOnUiThread(() -> {
             rightPanelFragment.getMsgReceived().setText(builder.toString());
         });
-    }
-
-    public void Toast(String msg){
-        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-
     }
 }

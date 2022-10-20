@@ -23,12 +23,11 @@ public class rightPanelFragment extends Fragment {
     Button btnConnect;
     BluetoothService bluetoothService;
     TextView msgReceived;
-
-    String textReceived;
-
     public boolean btEnabled = false;
+
     public rightPanelFragment() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +38,7 @@ public class rightPanelFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_panel_right, container, false);
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         btnConnect = view.findViewById(R.id.btnConnect);
@@ -47,6 +47,7 @@ public class rightPanelFragment extends Fragment {
         btnConnect.setBackgroundResource(R.drawable.disconnected);
         msgReceived.setBackgroundResource(R.drawable.received_bg);
     }
+
     public void setBluetoothService(BluetoothService bluetoothService) {
         this.bluetoothService = bluetoothService;
     }
@@ -54,11 +55,5 @@ public class rightPanelFragment extends Fragment {
     public Button getBtnConnect() {
         return btnConnect;
     }
-
     public TextView getMsgReceived() {return msgReceived; }
-
-    public void setReceivedText(String text){
-        this.textReceived = text;
-    }
-
 }

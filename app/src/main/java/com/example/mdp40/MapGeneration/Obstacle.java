@@ -17,8 +17,6 @@ public class Obstacle {
     private int[] currentId1;
     private String[] currentId;
 
-    private GridMap gridMap;
-    private MapInit mapInit;
     private String[] avaiId;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -30,14 +28,16 @@ public class Obstacle {
             }
         }
         obsLoc = newarray;
+
         //add leftimage
         obsLoc[0][no_of_obs-1] = 0;
-        //ThreadLocalRandom.current().nextInt(0, 17);
+
         //add topimage
         obsLoc[1][no_of_obs-1] = 0;
-        //ThreadLocalRandom.current().nextInt(0, 17);
+
         //add angle
         obsLoc[2][no_of_obs-1] = 0;
+
         //add id
         currentId1 = new int[obsLoc[3].length-1];
         for (int j=0;j<obsLoc[3].length-1;j++){
@@ -49,6 +49,7 @@ public class Obstacle {
         avaiId = new String[obsIdentity[0].length-currentId.length];
         avaiId = checkAvaiId(currentId);
         obsLoc[3][no_of_obs-1] = Integer.parseInt(avaiId[0]);
+
         //add size
         obsLoc[4][no_of_obs-1] = 10;
 

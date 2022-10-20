@@ -8,20 +8,6 @@
     android:background="@drawable/app_bg"
     tools:context=".fragments.mapPanelFragment">
 
-
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
-
     <Button
         android:id="@+id/changeId"
         android:layout_width="109dp"
@@ -234,87 +220,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
-
-    <ImageView
-        android:id="@+id/forwardView"
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
-        custom:srcCompat="@drawable/forward" />
-
-    <ImageView
-        android:id="@+id/turnLView"
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:rotation="33"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.075"
-        custom:srcCompat="@drawable/turnleft" />
-
-    <ImageView
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:rotation="-33"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/forwardView"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258"
-        custom:srcCompat="@drawable/turnleft" />
-
-    <ImageView
-        android:id="@+id/backwardView"
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.149"
-        custom:srcCompat="@drawable/backward" />
-
-    <ImageView
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:rotation="33"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toEndOf="@+id/forwardView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235"
-        custom:srcCompat="@drawable/turnright" />
-
-    <ImageView
-        android:id="@+id/turnRView"
-        android:layout_width="36dp"
-        android:layout_height="32dp"
-        android:rotation="-33"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toEndOf="@+id/forwardView"
-        app:layout_constraintTop_toTopOf="@+id/forwardView"
-        app:layout_constraintVertical_bias="0.075"
-        custom:srcCompat="@drawable/turnright" />
 
 
     <com.example.mdp40.MapGeneration.GridMap

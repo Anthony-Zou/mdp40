@@ -8,9 +8,6 @@ public class GameLogic {
     private static int moveRobot = 0;
     private TextView robotX;
     private TextView robotY;
-    private int robotTop;
-    private int robotLeft;
-
 
     public GameLogic(){
         gripMap = new int[20][20];
@@ -70,17 +67,6 @@ public class GameLogic {
         }
     }
 
-    public void changeObsId(){
-        int r, c;
-
-        for (r = 0; r < 20; r++){
-            for (c = 0; c < 20; c++){
-                gripMap[r][c] = 9;
-                moveRobot += 1;
-            }
-        }
-    }
-
     public void moveRobotForward(){
         int r, c;
         for (r = 0; r < 20; r++){
@@ -90,7 +76,6 @@ public class GameLogic {
                 }
             }
         }
-        System.out.println("check game logic:" + gripMap[0][0]);
     }
 
     public void moveRobotBackward(){
@@ -148,29 +133,6 @@ public class GameLogic {
         }
     }
 
-
-    //map init
-    public void setRobotX (TextView robotX){
-        this.robotX = robotX;
-    }
-
-    public void setRobotY (TextView robotY){
-        this.robotY = robotY;
-    }
-
-    //grid map
-    public void displayLoc (int robotLeft, int robotTop){
-        int convX = robotLeft+1;
-        int convY = 18 - robotTop;
-        robotX.setText(String.valueOf(convX));
-        robotY.setText(String.valueOf(convY));
-    }
-
-    public void updateRobotPos(int robotLeft, int robotTop){
-        this.robotLeft = robotLeft;
-        this.robotTop = robotTop;
-    }
-
     public void clearCanvas(){
         int r, c;
 
@@ -180,5 +142,19 @@ public class GameLogic {
                 moveRobot = 0;
             }
         }
+    }
+
+    //display robot position as textview on ui
+    public void setRobotX (TextView robotX){
+        this.robotX = robotX;
+    }
+    public void setRobotY (TextView robotY){
+        this.robotY = robotY;
+    }
+    public void displayLoc (int robotLeft, int robotTop){
+        int convX = robotLeft+1;
+        int convY = 18 - robotTop;
+        robotX.setText(String.valueOf(convX));
+        robotY.setText(String.valueOf(convY));
     }
 }
